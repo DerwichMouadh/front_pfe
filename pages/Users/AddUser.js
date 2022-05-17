@@ -1,11 +1,12 @@
+import React from "react";
 import Head from "next/head";
-import Image from "next/image";
-import HomeContent from "../components/HomeContent";
-import Navbar from "../components/Navbar";
-import RightSidebar from "../components/RightSidebar";
-import Sidebar from "../components/Sidebar";
 
-export default function Home() {
+import Navbar from "../../components/Navbar";
+import Sidebar from "../../components/Sidebar";
+import AddUserContent from "../../components/AddUserContent";
+import RightSidebar from "../../components/RightSidebar";
+
+function AddUser() {
   return (
     <div className="flex">
       <Head>
@@ -14,13 +15,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
       </Head>
-
       <Sidebar />
-      <div className=" bg-myColors-100 h-screen w-7/12 relative">
-        <Navbar navBarTitle_1="Dashboard" navBarTitle_2="" />
-        <HomeContent />
+      <div className="bg-myColors-100 h-screen w-7/12 relative">
+        <Navbar navBarTitle_1="Users" navBarTitle_2="Add User" />
+        <AddUserContent />
       </div>
       <RightSidebar />
     </div>
   );
 }
+
+export default AddUser;
