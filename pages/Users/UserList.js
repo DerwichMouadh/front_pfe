@@ -25,8 +25,8 @@ function UserList() {
           <div className="flex text-white">
             <h4 className="w-1/12 text-center">Id</h4>
             <h4 className="w-4/12">Name</h4>
-            <h4 className="w-3/12">Email</h4>
-            <h4 className="w-2/12">Section</h4>
+            <h4 className="w-3/12">Role</h4>
+            <h4 className="w-2/12">_id</h4>
             <h4 className="w-2/12">Actions</h4>
           </div>
           <div className="h-[1px] w-full bg-white"></div>

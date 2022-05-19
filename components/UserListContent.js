@@ -21,7 +21,7 @@ function UserListContent() {
   return (
     <div className="bg-myColors-200 rounded-2xl w-7/12 fixed top-[82px] my-8 mb-24 -bottom-16 pt-16 pb-24 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
       <div className="flex-col space-y-2">
-        {rhs?.map(({ _id, firstname, lastname, email, image }, i) => (
+        {rhs?.map(({ _id, firstname, lastname, email, role, image }, i) => (
           <UserRow
             id={_id}
             getAll={getAll}
@@ -31,54 +31,7 @@ function UserListContent() {
             lastname={lastname}
             _id={_id}
             image={image}
-          />
-        ))}
-        {rhs?.map(({ _id, firstname, lastname, email, image }, i) => (
-          <UserRow
-            id={_id}
-            getAll={getAll}
-            key={_id}
-            number={i}
-            firstname={firstname}
-            lastname={lastname}
-            _id={_id}
-            image={image}
-          />
-        ))}
-        {rhs?.map(({ _id, firstname, lastname, email, image }, i) => (
-          <UserRow
-            id={_id}
-            getAll={getAll}
-            key={_id}
-            number={i}
-            firstname={firstname}
-            lastname={lastname}
-            _id={_id}
-            image={image}
-          />
-        ))}
-        {rhs?.map(({ _id, firstname, lastname, email, image }, i) => (
-          <UserRow
-            id={_id}
-            getAll={getAll}
-            key={_id}
-            number={i}
-            firstname={firstname}
-            lastname={lastname}
-            _id={_id}
-            image={image}
-          />
-        ))}
-        {rhs?.map(({ _id, firstname, lastname, email, image }, i) => (
-          <UserRow
-            id={_id}
-            getAll={getAll}
-            key={_id}
-            number={i}
-            firstname={firstname}
-            lastname={lastname}
-            _id={_id}
-            image={image}
+            role={role}
           />
         ))}
       </div>

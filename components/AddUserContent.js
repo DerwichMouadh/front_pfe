@@ -18,6 +18,7 @@ function AddUserContent() {
     form.append("firstname", data.firstname);
     form.append("lastname", data.lastname);
     form.append("email", data.email);
+    form.append("password", data.password);
     form.append("image", data.image);
 
     Swal.fire({
@@ -27,21 +28,21 @@ function AddUserContent() {
       confirmButtonText: "Save",
       denyButtonText: "Don't save",
     }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          route.push("/Users/UserList");
-          RhService.create(form)
-            .then((res) => {
-              console.log(res);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-          Swal.fire("Saved!", "", "success");
-        } else if (result.isDenied) {
-          Swal.fire("Changes are not saved", "", "info");
-        }
-      });
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        route.push("/Users/UserList");
+        RhService.create(form)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   };
   const handleImageChange = (e, fn) => {
     fn(e.target.files[0]);
@@ -259,6 +260,22 @@ function AddUserContent() {
                           id="filename"
                           title="Browse file"
                           onChange={(e) => handleImageChange(e, setImage)}
+                        />
+                        <span className="help-block">Input type file</span>
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label className="col-md-3 col-xs-12 control-label">
+                        password
+                      </label>
+                      <div className="col-md-6 col-xs-12">
+                        <input
+                          type="text"
+                          
+                          name="password"
+                          id="filename"
+                          title="Browse file"
+                          onChange={onChangeHandler}
                         />
                         <span className="help-block">Input type file</span>
                       </div>

@@ -4,7 +4,7 @@ const getAll = ()=>{
     return http.get("/rhs/")
 }
 const create = (data)=>{
-    return http.post("/rhs/register" , data)
+    return http.post("/rhs/create" , data)
 }
 const updateRh = (id , data)=>{
     return http.put(`/rhs/rh/${id}`, data)

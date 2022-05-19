@@ -5,7 +5,7 @@ import RhsServices from "../services/RhService";
 import Swal from "sweetalert2";
 import Link from "next/link";
 
-function UserRow({ id , _id, firstname, lastname, email, number, image , getAll}) {
+function UserRow({ id , _id, firstname, lastname, email, role, number, image , getAll}) {
   const deleteRh = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -43,7 +43,7 @@ function UserRow({ id , _id, firstname, lastname, email, number, image , getAll}
         />
         <h4 className="">{firstname}</h4>
       </div>
-      <h4 className="w-3/12">{lastname}</h4>
+      <h4 className="w-3/12">{role}</h4>
       <h4 className="w-2/12">{_id}</h4>
       <div className="w-2/12 flex -ml-2">
         <Link href={"/Users/UpdateUser/" + _id} key={_id}>
