@@ -18,13 +18,13 @@ function LineChart() {
         label: "# of Votes",
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
-            "rgba(255, 99, 132, 0.9)",
-            "rgba(54, 162, 235, 0.9)",
-            "rgba(255, 206, 86, 0.9)",
-            "rgba(75, 192, 192, 0.9)",
-            "rgba(153, 102, 255, 0.9)",
-            "rgba(255, 159, 64, 0.9)",
-          ],
+          "rgba(255, 99, 132, 0.9)",
+          "rgba(54, 162, 235, 0.9)",
+          "rgba(255, 206, 86, 0.9)",
+          "rgba(75, 192, 192, 0.9)",
+          "rgba(153, 102, 255, 0.9)",
+          "rgba(255, 159, 64, 0.9)",
+        ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
           "rgba(54, 162, 235, 1)",
@@ -43,11 +43,31 @@ function LineChart() {
     scales: {
       y: {
         beginAtZero: true,
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)',
+          display: true, 
+        },
+      },
+      x: {
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)' 
+        }
       },
     },
-    legend: {
-      labels: { fontSize: 26 },
-    },
+    plugins: {
+      legend: {
+          labels: {
+              color: 'rgba(255, 255, 255, 0.8)',
+          }
+      }
+  },
+    elements: {
+      line: {
+        backgroundColor: 'rgba(200, 200, 200, 0.9)',
+        tension: 0.5,
+        stepped: 'middle'
+      }
+    }
   };
 
   return (

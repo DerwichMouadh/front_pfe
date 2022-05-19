@@ -41,9 +41,14 @@ function DoughnutChart() {
     //     beginAtZero: true,
     //   },
     // },
-    legend: {
-      labels: { fontSize: 26 },
-    },
+    plugins: {
+      legend: {
+        labels: {
+          color: 'rgba(255, 255, 255, 0.8)',
+        },
+        align: 'start',
+      }
+    }
   };
 
   return (

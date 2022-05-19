@@ -3,7 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
 function Pagination() {
   return (
-    <div className="bg-myColors-300 px-4 py-3 mt-6 flex items-center justify-between rounded-xl sm:px-6">
+    <div className="bg-myColors-300 px-4 py-3 flex items-center justify-between rounded-xl sm:px-6">
       <div className="flex-1 flex justify-between sm:hidden">
         <a
           href="#"

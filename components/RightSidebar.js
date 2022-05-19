@@ -9,7 +9,7 @@ function RightSidebar() {
     <div className="bg-myColors-100 text-white pt-6 pb-8 px-4 text-sm w-3/12 min-w-[200px] flex flex-col space-y-5 h-screen">
       <div className="flex h-11 cursor-pointer items-center rounded-xl bg-myColors-200 mb-6">
         <input
-          className="pl-4 flex-grow h-full text-sm focus:ring-indigo-500 focus:border-indigo-500 font-normal rounded-bl-xl rounded-tl-xl text-white items-center bg-transparent outline-none border-0"
+          className="pl-4 flex-grow h-full text-sm focus:ring-0 focus:border-0 font-normal rounded-bl-xl rounded-tl-xl text-white items-center bg-transparent outline-none border-0"
           type="text"
           placeholder="Find something..."
         />

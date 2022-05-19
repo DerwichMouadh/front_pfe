@@ -1,7 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import CTAButton from "./CTAButton";
-
+import RhService from "../services/RhService";
+import Swal from "sweetalert2";
+import route from "next/router";
 function AddUserContent() {
+  const [data, setData] = useState({});
+  const [image, setImage] = useState();
+  const onChangeHandler = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append("firstname", data.firstname);
+    form.append("lastname", data.lastname);
+    form.append("email", data.email);
+    form.append("image", data.image);
+
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: "Don't save",
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          route.push("/Users/UserList");
+          RhService.create(form)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+  };
+  const handleImageChange = (e, fn) => {
+    fn(e.target.files[0]);
+    // markInputAsTrue(e.target.id);
+  };
+
   return (
     <div className="bg-myColors-200 rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
       <div>
@@ -147,7 +193,7 @@ function AddUserContent() {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form action="#" method="POST" onSubmit={onSubmitHandler}>
               <div className="shadow overflow-hidden rounded-2xl sm:rounded-2xl">
                 <div className="px-4 py-5 bg-myColors-700 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -160,7 +206,8 @@ function AddUserContent() {
                       </label>
                       <input
                         type="text"
-                        name="first-name"
+                        name="firstname"
+                        onChange={onChangeHandler}
                         id="first-name"
                         autoComplete="given-name"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-xl bg-myColors-200"
@@ -176,8 +223,9 @@ function AddUserContent() {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
+                        name="lastname"
                         id="last-name"
+                        onChange={onChangeHandler}
                         autoComplete="family-name"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-xl bg-myColors-200"
                       />
@@ -192,98 +240,33 @@ function AddUserContent() {
                       </label>
                       <input
                         type="text"
-                        name="email-address"
+                        name="email"
+                        onChange={onChangeHandler}
                         id="email-address"
                         autoComplete="email"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-xl bg-myColors-200"
                       />
                     </div>
-
-                    <div className="col-span-6 sm:col-span-3">
-                      <label
-                        htmlFor="country"
-                        className="block text-sm font-medium"
-                      >
-                        Country
+                    <div className="form-group">
+                      <label className="col-md-3 col-xs-12 control-label">
+                        File
                       </label>
-                      <select
-                        id="country"
-                        name="country"
-                        autoComplete="country-name"
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-myColors-200"
-                      >
-                        <option>United States</option>
-                        <option>Canada</option>
-                        <option>Mexico</option>
-                      </select>
-                    </div>
-
-                    <div className="col-span-6">
-                      <label
-                        htmlFor="street-address"
-                        className="block text-sm font-medium "
-                      >
-                        Street address
-                      </label>
-                      <input
-                        type="text"
-                        name="street-address"
-                        id="street-address"
-                        autoComplete="street-address"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-xl bg-myColors-200"
-                      />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                      <label
-                        htmlFor="city"
-                        className="block text-sm font-medium "
-                      >
-                        City
-                      </label>
-                      <input
-                        type="text"
-                        name="city"
-                        id="city"
-                        autoComplete="address-level2"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-xl bg-myColors-200"
-                      />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                      <label
-                        htmlFor="region"
-                        className="block text-sm font-medium "
-                      >
-                        State / Province
-                      </label>
-                      <input
-                        type="text"
-                        name="region"
-                        id="region"
-                        autoComplete="address-level1"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-xl bg-myColors-200"
-                      />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                      <label
-                        htmlFor="postal-code"
-                        className="block text-sm font-medium "
-                      >
-                        ZIP / Postal code
-                      </label>
-                      <input
-                        type="text"
-                        name="postal-code"
-                        id="postal-code"
-                        autoComplete="postal-code"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-xl bg-myColors-200"
-                      />
+                      <div className="col-md-6 col-xs-12">
+                        <input
+                          type="file"
+                          className="fileinput btn-primary"
+                          name="image"
+                          id="filename"
+                          title="Browse file"
+                          onChange={(e) => handleImageChange(e, setImage)}
+                        />
+                        <span className="help-block">Input type file</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <CTAButton title="Add User" />
             </form>
           </div>
         </div>
@@ -436,7 +419,6 @@ function AddUserContent() {
           </div>
         </div>
       </div>
-        <CTAButton title="Add User" />
     </div>
   );
 }

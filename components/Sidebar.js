@@ -4,22 +4,23 @@ import {
   ArrowCircleRightIcon,
   ArrowCircleDownIcon,
 } from "@heroicons/react/solid";
-import { UserIcon } from "@heroicons/react/outline";
+import { UserIcon, UserAddIcon, ClipboardListIcon } from "@heroicons/react/outline";
 import SidebarRow from "./SidebarRow";
 import Link from "next/link";
 
 function Sidebar() {
   const [open, setOpen] = useState(false);
+
   return (
     <div className="bg-myColors-100 p-4 pb-8 text-sm font-medium w-2/12 min-w-[200px] flex flex-col space-y-3 h-screen">
       <div className="px-4 pt-4 pb-10">
-        <Link href="/">
+        <Link href="/Dashboard">
           <a className="text-2xl font-bold text-white font-fancy">DashAdmin</a>
         </Link>
       </div>
       <div className="flex-grow scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/">
+          <Link href="/Dashboard">
             <a className="w-full">
               <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
             </a>
@@ -41,62 +42,62 @@ function Sidebar() {
           <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
             <Link href="/Users/AddUser" className="">
               <a className="w-full">
-                <SidebarRow Icon={UserIcon} title="Add User" />
+                <SidebarRow Icon={UserAddIcon} title="Add User" color />
               </a>
             </Link>
           </div>
           <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
             <Link href="/Users/UserList">
               <a className="w-full">
-                <SidebarRow Icon={UserIcon} title="User List" />
+                <SidebarRow Icon={ClipboardListIcon} title="User List" color />
               </a>
             </Link>
           </div>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/">
+          <Link href="/Dashboard">
             <a className="w-full">
               <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-          <Link href="/">
+          <Link href="/Dashboard">
             <a className="w-full">
               <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/">
+          <Link href="/Dashboard">
             <a className="w-full">
               <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/">
+          <Link href="/Dashboard">
             <a className="w-full">
               <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-          <Link href="/">
+          <Link href="/Dashboard">
             <a className="w-full">
               <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-          <Link href="/">
+          <Link href="/Dashboard">
             <a className="w-full">
               <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl relative group hover:bg-myColors-300 ">
-          <Link href="/">
+          <Link href="/Dashboard">
             <a className="w-full">
               <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
             </a>

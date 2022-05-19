@@ -33,20 +33,36 @@ function BarChart() {
           "rgba(255, 159, 64, 1)",
         ],
         borderWidth: 3,
+        barPercentage: 1.0,
+
       },
     ],
   };
 
   var options = {
+    indexAxis: 'x',
     maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)',
+          display: true, 
+        },
+      },
+      x: {
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)' 
+        }
       },
     },
-    legend: {
-      labels: { fontSize: 26 },
-    },
+    plugins: {
+      legend: {
+          labels: {
+              color: 'rgba(255, 255, 255, 0.8)',
+          }
+      }
+  }
   };
 
   return (
