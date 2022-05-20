@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { CogIcon, TrashIcon, ExternalLinkIcon } from "@heroicons/react/solid";
+import { PencilAltIcon, TrashIcon, ExternalLinkIcon } from "@heroicons/react/solid";
 import RhsServices from "../services/RhService";
 import Swal from "sweetalert2";
 import Link from "next/link";
@@ -53,7 +53,7 @@ function UserRow({ id, _id, firstname, lastname, email, role, number, image, get
           </Link>
           <Link href={"/Users/UpdateUser/" + _id} key={_id}>
             <a>
-              <CogIcon className="h-9 w-9 hover:bg-myColors-200 text-myColors-600 p-2 rounded-xl" />
+              <PencilAltIcon className="h-9 w-9 hover:bg-myColors-200 text-myColors-600 p-2 rounded-xl" />
             </a>
           </Link>
           <TrashIcon className="h-9 w-9 hover:bg-myColors-200 text-red-500 p-2 rounded-xl" onClick={(e) => deleteRh(id)} />
