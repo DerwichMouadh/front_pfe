@@ -1,11 +1,33 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Image from "next/image";
 import bg from '../images/bg.jpg'
 import { LockClosedIcon, LockOpenIcon, UserIcon } from '@heroicons/react/solid'
 import Link from 'next/link';
+import axios from "axios"
+import authService from "../services/authService"
 
 function Login() {
-  const [date, setDate] = useState()
+  const [data, setData] = useState({})
+
+  const onChangeHandler = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    authService.create(data).then((res) => {
+      console.log(res);
+      setData(res.data);
+      cookie.set("token", res.data.token, { expires: 1 });
+      cookie.set("email", data.email, { expires: 1 });
+      router.push('/Dashboard')
+
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   return (
     <div className='grid place-items-center h-screen w-screen relative'>
@@ -29,7 +51,7 @@ function Login() {
                 Dashboard Admin
               </p>
             </div>
-            <form className="mt-8 space-y-6" action="#" method="POST">
+            <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="rounded-md shadow-sm flex-col space-y-2 py-6">
                 <div className='flex relative'>
@@ -41,6 +63,7 @@ function Login() {
                   <input
                     id="email-address"
                     name="email"
+                    onChange={onChangeHandler}
                     type="email"
                     autoComplete="email"
                     required
@@ -56,6 +79,7 @@ function Login() {
                   <input
                     id="password"
                     name="password"
+                    onChange={onChangeHandler}
                     type="password"
                     autoComplete="current-password"
                     required
@@ -94,7 +118,7 @@ function Login() {
                     <LockClosedIcon className="h-5 w-5 group-hover:hidden text-white opacity-80" aria-hidden="true" />
                     <LockOpenIcon className="h-5 w-5 hidden group-hover:block" aria-hidden="true" />
                   </span>
-                  <Link href="/Dashboard"><a>Sign in</a></Link>
+                  Sign in
                 </button>
               </div>
             </form>

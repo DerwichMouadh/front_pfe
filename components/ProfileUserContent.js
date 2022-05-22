@@ -33,7 +33,7 @@ function ProfileUserContent({ _id }) {
         <div className="bg-white rounded-full w-20 h-20"></div>
         <div className="flex-col">
           <div className="flex space-x-2 items-center">
-            <div className=" text-2xl">Kylian Mbappe</div>
+            <div className=" text-2xl">Karim Benzema</div>
             <div className="bg-green-500 w-2 h-2 rounded-full"></div>
           </div>
           <div className="flex space-x-2">
@@ -122,8 +122,8 @@ function ProfileUserContent({ _id }) {
         <div className="w-2/3 ml-1">
           <div className=" bg-myColors-700 p-6 rounded-xl h-1/4 mb-2">
             <h2 className="font-fancy mb-4">Tasks</h2>
-            <div className="flex items-center border-2 border-green-500 w-full h-4 rounded-full">
-              <div className="bg-green-500 rounded-full w-3/4 h-4"></div>
+            <div className="flex items-center border-2 border-green-500 w-full h-3 rounded-full">
+              <div className="bg-green-500 rounded-full w-3/4 h-3"></div>
             </div>
             <p className="mt-2 text-xs">75% of tasks completed.</p>
           </div>
