@@ -8,6 +8,9 @@ import RightSidebar from "../../components/RightSidebar";
 import UserListContent from "../../components/UserListContent";
 import Pagination from "../../components/Pagination";
 
+import { requirePageAuth } from "../../utils/auth";
+
+
 function UserList() {
   return (
     <div className="flex">
@@ -40,5 +43,7 @@ function UserList() {
     </div>
   );
 }
+
+export const getServerSideProps = requirePageAuth;
 
 export default UserList;

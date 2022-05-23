@@ -9,9 +9,18 @@ import React, { useState } from "react";
 import Image from "next/image";
 import NavbarItem from "./NavbarItem";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import cookie from "js-cookie";
 
 function Navbar({ navBarTitle_1, navBarTitle_2 }) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const logout = () => {
+    cookie.remove("token");
+    cookie.remove("email");
+    
+    router.push("/");
+  };
 
   return (
     <div className="flex items-center pt-6">
@@ -42,7 +51,7 @@ function Navbar({ navBarTitle_1, navBarTitle_2 }) {
 
         <div className={`${open ? "block" : "hidden"} absolute bg-myColors-200 hover:bg-myColors-600 right-0 top-[75px] flex space-x-4 p-1 px-4 rounded-xl text-myColors-600 hover:text-myColors-200 cursor-pointer`}>
           <LogoutIcon className="w-6 h-6" />
-          <Link href="/"><a>Log Out</a></Link>
+          <button onClick={logout}>Log Out</button>
         </div>
       </div>
     </div>

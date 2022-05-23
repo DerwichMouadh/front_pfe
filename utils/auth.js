@@ -7,7 +7,7 @@ export const requirePageAuth = (ctx) => {
         return {
             props: {},
             redirect: {
-                destination: '/Dashboard',
+                destination: '/',
                 permanent: false
             }
         };

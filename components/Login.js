@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import Image from "next/image";
 import bg from '../images/bg.jpg'
+import axios from "axios";
 import { LockClosedIcon, LockOpenIcon, UserIcon } from '@heroicons/react/solid'
 import Link from 'next/link';
-import axios from "axios"
-import authService from "../services/authService"
+import router from "next/router";
+import authService from '../services/authService';
+
+
+import cookie from "js-cookie";
+import nextCookie from "next-cookies";
 
 function Login() {
+
   const [data, setData] = useState({})
 
   const onChangeHandler = (e) => {
@@ -51,7 +57,7 @@ function Login() {
                 Dashboard Admin
               </p>
             </div>
-            <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+            <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="rounded-md shadow-sm flex-col space-y-2 py-6">
                 <div className='flex relative'>
@@ -78,8 +84,8 @@ function Login() {
                   </label>
                   <input
                     id="password"
-                    name="password"
                     onChange={onChangeHandler}
+                    name="password"
                     type="password"
                     autoComplete="current-password"
                     required
@@ -127,6 +133,21 @@ function Login() {
       </div>
     </div>
   )
+
 }
+export const getServerSideProps = (ctx) => {
+  const { token } = nextCookie(ctx);
+
+  if (token) {
+    return {
+      redirect: {
+        destination: "/Dashboard",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+};
 
 export default Login

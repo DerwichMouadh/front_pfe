@@ -4,7 +4,7 @@ import {
   ArrowCircleRightIcon,
   ArrowCircleDownIcon,
 } from "@heroicons/react/solid";
-import { UserIcon, UserAddIcon, ClipboardListIcon, ClipboardIcon } from "@heroicons/react/outline";
+import { UserIcon, UserAddIcon, ClipboardListIcon, ClipboardIcon, CalendarIcon, ClipboardCheckIcon } from "@heroicons/react/outline";
 import SidebarRow from "./SidebarRow";
 import Link from "next/link";
 
@@ -62,16 +62,16 @@ function Sidebar() {
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-          <Link href="/Dashboard">
+          <Link href="/Schedule">
             <a className="w-full">
-              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+              <SidebarRow Icon={CalendarIcon} title="Schedule" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/Dashboard">
+          <Link href="/Kanban">
             <a className="w-full">
-              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+              <SidebarRow Icon={ClipboardCheckIcon} title="Kanban" />
             </a>
           </Link>
         </div>
