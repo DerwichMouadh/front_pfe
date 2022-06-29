@@ -4,7 +4,14 @@ import {
   ArrowCircleRightIcon,
   ArrowCircleDownIcon,
 } from "@heroicons/react/solid";
-import { UserIcon, UserAddIcon, ClipboardListIcon, ClipboardIcon, CalendarIcon, ClipboardCheckIcon } from "@heroicons/react/outline";
+import {
+  UserIcon,
+  UserAddIcon,
+  ClipboardListIcon,
+  ClipboardIcon,
+  CalendarIcon,
+  ClipboardCheckIcon,
+} from "@heroicons/react/outline";
 import SidebarRow from "./SidebarRow";
 import Link from "next/link";
 
@@ -56,8 +63,11 @@ function Sidebar() {
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
           <Link href="/FileRequest/FileRequestList">
-            <a className="w-full">
+            <a className="w-full relative">
               <SidebarRow Icon={ClipboardIcon} title="File Requests List" />
+              <div className=" absolute text-center text-xs font-bold right-[22px] top-1/3 bg-myColors-600 rounded-full text-myColors-300 w-[14px] h-[14px]" >
+                1
+              </div>
             </a>
           </Link>
         </div>
@@ -76,6 +86,20 @@ function Sidebar() {
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
+          <Link href="/Dashboard">
+            <a className="w-full">
+              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+            </a>
+          </Link>
+        </div>
+        <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
+          <Link href="/Dashboard">
+            <a className="w-full">
+              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+            </a>
+          </Link>
+        </div>
+        <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
           <Link href="/Dashboard">
             <a className="w-full">
               <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />

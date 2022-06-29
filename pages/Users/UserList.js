@@ -11,7 +11,7 @@ import Pagination from "../../components/Pagination";
 import { requirePageAuth } from "../../utils/auth";
 
 
-function UserList() {
+function UserList({ token }) {
   return (
     <div className="flex">
       <Head>
@@ -23,7 +23,7 @@ function UserList() {
       <Sidebar />
       <div className="bg-myColors-100 h-screen w-7/12 relative">
         <Navbar navBarTitle_1="Users" navBarTitle_2="User List" />
-        <UserListContent />
+        <UserListContent token={token} />
         <div className="px-8 absolute top-[114px] pt-6 left-0 right-0 rounded-2xl bg-myColors-200">
           <div className="flex text-white">
             <h4 className="w-1/12 text-center">Id</h4>

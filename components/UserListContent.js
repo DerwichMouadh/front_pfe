@@ -3,13 +3,14 @@ import { PencilAltIcon, XCircleIcon } from "@heroicons/react/outline";
 import UserRow from "./UserRow";
 import Pagination from "./Pagination";
 import RhsServices from "../services/RhService";
-function UserListContent() {
+function UserListContent({ token }) {
   const [rhs, setRhs] = useState([]);
   const getAll = () => {
     RhsServices.getAll()
       .then((res) => {
-        console.log(res);
+
         setRhs(res.data.data);
+        console.log(token)
       })
       .catch((err) => {
         console.log(err);
@@ -32,6 +33,7 @@ function UserListContent() {
             _id={_id}
             image={image}
             role={role}
+            token={token}
           />
         ))}
       </div>
