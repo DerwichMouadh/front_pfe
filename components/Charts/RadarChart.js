@@ -10,7 +10,7 @@ import { Radar } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, RadialLinearScale, PointElement);
 
-function RadarChart() {
+function RadarChart({ numInProgress, numReady, numRefused }) {
     var data = {
         labels: [
             'Eating',

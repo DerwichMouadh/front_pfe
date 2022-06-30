@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ViewBoardsIcon,
   ArrowCircleRightIcon,
@@ -14,9 +14,39 @@ import {
 } from "@heroicons/react/outline";
 import SidebarRow from "./SidebarRow";
 import Link from "next/link";
+import axios from "axios";
 
-function Sidebar() {
+function Sidebar({token}) {
   const [open, setOpen] = useState(false);
+
+  const [files, setFiles] = useState([]);
+  let filtredFiles = [];
+
+  useEffect(() => {
+    getallInProgress();
+  }, []);
+
+  const getallInProgress = () => {
+    const config = {
+      method: "GET",
+      url: `http://localhost:5000/filerequests/inprogress`,
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
+    };
+    axios(config)
+      .then(({ status, data }) => {
+        if (status === 200) {
+          setFiles(data.data);
+        }
+      })
+      .catch((err) => {
+        console.error("err", err);
+      });
+  };
+
+  filtredFiles = files.filter((file) => file.status === "In Progress");
+  let num = filtredFiles.length
 
   return (
     <div className="bg-myColors-100 p-4 pb-8 text-sm font-medium w-2/12 min-w-[200px] flex flex-col space-y-3 h-screen">
@@ -65,8 +95,8 @@ function Sidebar() {
           <Link href="/FileRequest/FileRequestList">
             <a className="w-full relative">
               <SidebarRow Icon={ClipboardIcon} title="File Requests List" />
-              <div className=" absolute text-center text-xs font-bold right-[22px] top-1/3 bg-myColors-600 rounded-full text-myColors-300 w-[14px] h-[14px]" >
-                1
+              <div className=" absolute text-center text-xs font-bold right-[22px] top-1/3 bg-myColors-600 rounded-full text-myColors-300 w-[14px] h-[14px]">
+                {num}
               </div>
             </a>
           </Link>

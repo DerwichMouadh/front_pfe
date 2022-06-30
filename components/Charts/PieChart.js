@@ -9,13 +9,15 @@ import { Pie } from "react-chartjs-2";
 
 ChartJS.register(Tooltip, Legend, ArcElement);
 
-function PieChart() {
+function PieChart({ numInProgress, numReady, numRefused }) {
   var data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: ["Ready", "In Progress", "Refused"],
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: "# of Files",
+        // data: [12, 19, 3, 5, 2, 3],
+        data: [numReady, numInProgress, numRefused],
         backgroundColor: [
             "rgba(255, 99, 132, 0.8)",
             "rgba(54, 162, 235, 0.8)",

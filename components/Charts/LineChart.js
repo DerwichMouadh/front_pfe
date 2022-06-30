@@ -10,13 +10,15 @@ import { Line } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
-function LineChart() {
+function LineChart({ numInProgress, numReady, numRefused }) {
   var data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: ["Ready", "In Progress", "Refused"],
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: "# of Files",
+        // data: [12, 19, 3, 5, 2, 3],
+        data: [numReady, numInProgress, numRefused],
         backgroundColor: [
           "rgba(255, 99, 132, 0.9)",
           "rgba(54, 162, 235, 0.9)",
@@ -64,8 +66,8 @@ function LineChart() {
     elements: {
       line: {
         backgroundColor: 'rgba(200, 200, 200, 0.9)',
-        tension: 0.5,
-        stepped: 'middle'
+        tension: 0,
+        // stepped: 'middle',
       }
     }
   };

@@ -7,9 +7,10 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { data } from "autoprefixer";
 
 function FileRequestListContent({ token }) {
-  const [ready, setReady] = useState(true);
-  const [inprogress, setInprogress] = useState(true);
-  const [refused, setRefused] = useState(true);
+  const [ready, setReady] = useState(false);
+  const [inprogress, setInprogress] = useState(false);
+  const [refused, setRefused] = useState(false);
+  const [all, setAll] = useState(true);
 
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
@@ -62,7 +63,12 @@ function FileRequestListContent({ token }) {
               className={`${
                 ready ? "bg-myColors-600" : "bg-myColors-500"
               } text-white p-1 px-4  rounded-md`}
-              onClick={() => setReady(!ready)}
+              onClick={() => {
+                setReady(true);
+                setInprogress(false);
+                setRefused(false);
+                setAll(false);
+              }}
             >
               Ready
             </button>
@@ -70,7 +76,12 @@ function FileRequestListContent({ token }) {
               className={`${
                 inprogress ? "bg-myColors-600" : "bg-myColors-500"
               } text-white p-1 px-4  rounded-md`}
-              onClick={() => setInprogress(!inprogress)}
+              onClick={() => {
+                setReady(false);
+                setInprogress(true);
+                setRefused(false);
+                setAll(false);
+              }}
             >
               In Progress
             </button>
@@ -78,20 +89,24 @@ function FileRequestListContent({ token }) {
               className={`${
                 refused ? "bg-myColors-600" : "bg-myColors-500"
               } text-white p-1 px-4  rounded-md`}
-              onClick={() => setRefused(!refused)}
+              onClick={() => {
+                setReady(false);
+                setInprogress(false);
+                setRefused(true);
+                setAll(false);
+              }}
             >
               Refused
             </button>
             <button
               className={`${
-                ready && inprogress && refused
-                  ? "bg-myColors-600"
-                  : "bg-myColors-500"
+                all ? "bg-myColors-600" : "bg-myColors-500"
               } text-white p-1 px-4  rounded-md`}
               onClick={() => {
-                setReady(true);
-                setInprogress(true);
-                setRefused(true);
+                setReady(false);
+                setInprogress(false);
+                setRefused(false);
+                setAll(true);
               }}
             >
               All
@@ -101,11 +116,10 @@ function FileRequestListContent({ token }) {
 
         <div className="pt-6 mb-4 rounded-2xl bg-myColors-200">
           <div className="flex text-white text-sm">
-            <h4 className="w-1/12 text-center">Id</h4>
-            <h4 className="w-2/12">Name</h4>
+            <h4 className="w-2/12 pl-6">Name</h4>
             <h4 className="w-3/12">Wording</h4>
             <h4 className="w-2/12">Status</h4>
-            <h4 className="w-2/12">Date</h4>
+            <h4 className="w-3/12">Date</h4>
             <h4 className="w-1/12">Actions</h4>
             <h4 className="w-1/12 text-center">Notif.</h4>
           </div>
@@ -116,7 +130,7 @@ function FileRequestListContent({ token }) {
           {ready &&
             files
               ?.filter((file) => file.status === "Ready")
-              .map(({ _id, name, wording, status, date }, i) => (
+              .map(({ _id, name, wording, status, createdAt }, i) => (
                 <FileRequestRow
                   id={_id}
                   getAll={getAll}
@@ -126,14 +140,14 @@ function FileRequestListContent({ token }) {
                   wording={wording}
                   _id={_id}
                   status={status}
-                  date={date}
+                  date={createdAt}
                   token={token}
                 />
               ))}
           {inprogress &&
             files
               ?.filter((file) => file.status === "In Progress")
-              .map(({ _id, name, wording, status, date }, i) => (
+              .map(({ _id, name, wording, status, createdAt }, i) => (
                 <FileRequestRow
                   id={_id}
                   getAll={getAll}
@@ -143,14 +157,14 @@ function FileRequestListContent({ token }) {
                   wording={wording}
                   _id={_id}
                   status={status}
-                  date={date}
+                  date={createdAt}
                   token={token}
                 />
               ))}
           {refused &&
             files
               ?.filter((file) => file.status === "Refused")
-              .map(({ _id, name, wording, status, date }, i) => (
+              .map(({ _id, name, wording, status, createdAt }, i) => (
                 <FileRequestRow
                   id={_id}
                   getAll={getAll}
@@ -160,10 +174,25 @@ function FileRequestListContent({ token }) {
                   wording={wording}
                   _id={_id}
                   status={status}
-                  date={date}
+                  date={createdAt}
                   token={token}
                 />
               ))}
+          {all &&
+            files.map(({ _id, name, wording, status, createdAt }, i) => (
+              <FileRequestRow
+                id={_id}
+                getAll={getAll}
+                key={_id}
+                number={i}
+                name={name}
+                wording={wording}
+                _id={_id}
+                status={status}
+                date={createdAt}
+                token={token}
+              />
+            ))}
         </div>
       </div>
 
@@ -187,7 +216,10 @@ function FileRequestListContent({ token }) {
             <div>
               <p className="text-sm text-white">
                 Showing{" "}
-                <span className="font-medium">{pageNumber * PAGE_SIZE + 1}</span> to{" "}
+                <span className="font-medium">
+                  {pageNumber * PAGE_SIZE + 1}
+                </span>{" "}
+                to{" "}
                 <span className="font-medium">
                   {pageNumber * PAGE_SIZE + PAGE_SIZE < totalNumberOfPages
                     ? pageNumber * PAGE_SIZE + PAGE_SIZE

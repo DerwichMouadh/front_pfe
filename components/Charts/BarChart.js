@@ -11,54 +11,15 @@ import { Bar } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-function BarChart({ token }) {
-  const [files, setFiles] = useState([]);
-  useEffect(() => {
-    getAll();
-  }, []);
-
-  const getAll = () => {
-    const config = {
-      method: "GET",
-      url: `http://localhost:5000/filerequests`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    axios(config)
-      .then(({ status, data }) => {
-        if (status === 200) {
-          setFiles(data.data);
-        }
-      })
-      .catch((err) => {
-        console.error("err", err);
-      });
-  };
-
-  let numberInProgress = 0;
-  let numberRefused = 0;
-
-  const numReady = () => {
-    var numberReady = 0;
-    files
-      ?.map((file) => {
-        if (file.status === "Ready") {
-          numberReady = numberReady + 1;
-        }
-      })
-    return numberReady
-  }
-
-  console.log("nnnnn: " + numReady);
-
+function BarChart({ numInProgress, numReady, numRefused }) {
+  
   var data = {
     // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     labels: ["Ready", "In Progress", "Refused"],
     datasets: [
       {
-        label: "# of Votes",
-        data: [numReady, 10, 5,],
+        label: " # of Files",
+        data: [numReady, numInProgress, numRefused],
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
           "rgba(54, 162, 235, 0.8)",
