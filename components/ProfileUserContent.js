@@ -23,6 +23,8 @@ function ProfileUserContent({ _id }) {
     getById();
   }, [_id]);
 
+  let convDate = new Date(rh.date_of_birth)
+
   return (
     <div className="bg-myColors-200 flex-col rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden text-sm">
       {/* <div>id: {_id}</div>
@@ -31,23 +33,23 @@ function ProfileUserContent({ _id }) {
       {/* Header */}
       <div className="bg-myColors-700 flex space-x-4 items-center p-4 rounded-2xl">
         <div className="bg-white rounded-full w-20 h-20"></div>
-        <div className="flex-col">
+        <div className="flex-col space-y-2">
           <div className="flex space-x-2 items-center">
-            <div className=" text-2xl">Karim Benzema</div>
+            <div className=" text-2xl">{rh.firstname} {rh.lastname}</div>
             <div className="bg-green-500 w-2 h-2 rounded-full"></div>
           </div>
-          <div className="flex space-x-2">
+          <div className="flex-col">
             <h2 className="text-myColors-600 font-light">Employee ID:</h2>
-            <h2>#123456</h2>
+            <h2>#{_id}</h2>
           </div>
         </div>
-        <div className="flex flex-grow space-x-2">
+        <div className="flex flex-grow space-x-2 pl-4">
           <div className="w-1 h-full"></div>
           <div className="flex-col space-y-2 text-myColors-600">
             <div className="flex items-center space-x-2">
               <BriefcaseIcon className="w-4 h-4" />
               <h2 className="font-light">Designation:</h2>
-              <h2 className="text-white">React JS Developer</h2>
+              <h2 className="text-white">{rh.designation}</h2>
             </div>
             <div className="flex items-center space-x-2">
               <BriefcaseIcon className="w-4 h-4" />
@@ -58,13 +60,13 @@ function ProfileUserContent({ _id }) {
         </div>
         <div className="flex-col space-y-2">
           <Link href="/">
-            <div className=" rounded-xl px-4 bg-myColors-400 hover:bg-myColors-600 flex space-x-2 items-center p-2 cursor-pointer">
+            <div className=" rounded-xl px-4 bg-myColors-400 text-green-300 hover:text-myColors-400 hover:bg-myColors-600 flex space-x-2 items-center p-2 cursor-pointer">
               <ChatIcon className="h-6 w-6" />
               <a>Message</a>
             </div>
           </Link>
           <Link href="/">
-            <div className=" rounded-xl px-4 bg-myColors-400 hover:bg-myColors-600 flex space-x-2 items-center p-2 cursor-pointer">
+            <div className=" rounded-xl px-4 bg-myColors-400 text-green-300 hover:text-myColors-400 hover:bg-myColors-600 flex space-x-2 items-center p-2 cursor-pointer">
               <PencilAltIcon className="h-6 w-6" />
               <a>Edit Profile</a>
             </div>
@@ -74,7 +76,7 @@ function ProfileUserContent({ _id }) {
 
       {/* Navbar */}
       <div className="bg-myColors-700 flex space-x-6 px-6 py-4 rounded-xl my-2">
-        <h2 className="cursor-pointer hover:text-myColors-600">About</h2>
+        <h2 className="cursor-pointer hover:text-myColors-600 text-myColors-600">About</h2>
         <h2 className="cursor-pointer hover:text-myColors-600">Applications</h2>
         <h2 className="cursor-pointer hover:text-myColors-600">Teams</h2>
         <h2 className="cursor-pointer hover:text-myColors-600">Connenctions</h2>
@@ -89,33 +91,34 @@ function ProfileUserContent({ _id }) {
             <ProfileUserRow
               Icon={CakeIcon}
               title="Date of Birth"
-              info="December 20, 1998"
+              info={convDate.toUTCString().substring(5, 16)}
             />
             <ProfileUserRow
               Icon={CakeIcon}
               title="Date of Birth"
-              info="December 20, 1998"
+              info={convDate.toUTCString().substring(5, 16)}
             />
             <ProfileUserRow
               Icon={CakeIcon}
               title="Date of Birth"
-              info="December 20, 1998"
+              info={convDate.toUTCString().substring(5, 16)}
             />
             <ProfileUserRow
               Icon={CakeIcon}
               title="Date of Birth"
-              info="December 20, 1998"
+              info={convDate.toUTCString().substring(5, 16)}
             />
             <ProfileUserRow
               Icon={CakeIcon}
               title="Date of Birth"
-              info="December 20, 1998"
+              info={convDate.toUTCString().substring(5, 16)}
             />
             <ProfileUserRow
               Icon={CakeIcon}
               title="Date of Birth"
-              info="December 20, 1998"
+              info={convDate.toUTCString().substring(5, 16)}
             />
+
           </div>
         </div>
 
@@ -133,22 +136,22 @@ function ProfileUserContent({ _id }) {
               <ProfileUserRow
                 Icon={CakeIcon}
                 title="Date of Birth"
-                info="December 20, 1998"
+                info={convDate.toUTCString().substring(5, 16)}
               />
               <ProfileUserRow
                 Icon={CakeIcon}
                 title="Date of Birth"
-                info="December 20, 1998"
+                info={convDate.toUTCString().substring(5, 16)}
               />
               <ProfileUserRow
                 Icon={CakeIcon}
                 title="Date of Birth"
-                info="December 20, 1998"
+                info={convDate.toUTCString().substring(5, 16)}
               />
               <ProfileUserRow
                 Icon={CakeIcon}
                 title="Date of Birth"
-                info="December 20, 1998"
+                info={convDate.toUTCString().substring(5, 16)}
               />
               <div className="flex col-span-2 space-x-2 bg-myColors-300 rounded-2xl p-2 text-myColors-600">
                 <div>

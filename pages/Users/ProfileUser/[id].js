@@ -27,6 +27,8 @@ function ProfileUser({ _id }) {
   useEffect(() => {
     getById();
   }, [_id]);
+
+
   return (
     <div className="flex">
       <Head>
@@ -41,7 +43,7 @@ function ProfileUser({ _id }) {
       <Sidebar />
       <div className="bg-myColors-100 h-screen w-7/12 relative">
         <Navbar navBarTitle_1="Users" navBarTitle_2="Profile User" />
-        <ProfileUserContent _id={id}  />
+        <ProfileUserContent _id={id}   />
       </div>
       <RightSidebar />
     </div>

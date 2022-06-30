@@ -7,7 +7,7 @@ import Link from "next/link";
 import { requirePageAuth } from "../utils/auth";
 import axios from "axios"
 
-function UserRow({ id, _id, firstname, lastname, email, role, number, image, getAll, token }) {
+function UserRow({ id, _id, firstname, lastname, date_of_birth, gender, role, email, location, designation, number, image, getAll, token }) {
   const deleteRh = (id) => {
 
     Swal.fire({
@@ -25,58 +25,59 @@ function UserRow({ id, _id, firstname, lastname, email, role, number, image, get
           method: "DELETE",
           url: `http://localhost:5000/users/user/${id}`,
           headers: {
-            Authorization: `Bearer ${ token }`,
-      },
-    };
-    axios(config)
-      .then((res) => {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        axios(config)
+          .then((res) => {
 
 
-        getAll();
+            getAll();
 
-      })
-    Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          })
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    }
+    )
   }
-}
-)}
 
-//////
+  //////
 
 
-return (
-  <div className="flex items-center text-xs bg-myColors-300 hover:bg-myColors-400 py-1 rounded-xl cursor-pointer">
-    <h4 className="w-1/12 text-center">{number + 1}</h4>
-    <div className="w-4/12 flex items-center space-x-2">
-      <img
-        alt=""
-        src={
-          "http://localhost:5000/getImage/" + image
+  return (
+    <div className="flex items-center text-xs bg-myColors-300 hover:bg-myColors-400 py-1 rounded-xl cursor-pointer">
+      <h4 className="w-1/12 text-center">{number + 1}</h4>
+      <div className="w-4/12 flex items-center space-x-2">
+        <img
+          alt=""
+          src={
+            "http://localhost:5000/getImage/" + image
 
-        }
-        width={35}
-        height={35}
-        layout="fixed"
-        className=" object-cover rounded-full"
-      />
-      <h4 className="">{firstname}</h4>
+          }
+          width={35}
+          height={35}
+          layout="fixed"
+          className=" object-cover rounded-full"
+        />
+        <h4 className="">{firstname} {lastname}</h4>
+      </div>
+      <h4 className="w-3/12">{designation}</h4>
+      <h4 className="w-2/12">Team Alpha</h4>
+      <div className="w-2/12 flex">
+        <Link href={"/Users/ProfileUser/" + _id} key={_id}>
+          <a>
+            <ExternalLinkIcon className="h-9 w-9 hover:bg-myColors-200 text-yellow-500 p-2 rounded-xl" />
+          </a>
+        </Link>
+        <Link href={"/Users/UpdateUser/" + _id} key={_id}>
+          <a>
+            <PencilAltIcon className="h-9 w-9 hover:bg-myColors-200 text-myColors-600 p-2 rounded-xl" />
+          </a>
+        </Link>
+        <TrashIcon className="h-9 w-9 hover:bg-myColors-200 text-red-500 p-2 rounded-xl" onClick={(e) => deleteRh(id)} />
+      </div>
     </div>
-    <h4 className="w-3/12">{role}</h4>
-    <h4 className="w-2/12">{_id}</h4>
-    <div className="w-2/12 flex -ml-2">
-      <Link href={"/Users/ProfileUser/" + _id} key={_id}>
-        <a>
-          <ExternalLinkIcon className="h-9 w-9 hover:bg-myColors-200 text-yellow-500 p-2 rounded-xl" />
-        </a>
-      </Link>
-      <Link href={"/Users/UpdateUser/" + _id} key={_id}>
-        <a>
-          <PencilAltIcon className="h-9 w-9 hover:bg-myColors-200 text-myColors-600 p-2 rounded-xl" />
-        </a>
-      </Link>
-      <TrashIcon className="h-9 w-9 hover:bg-myColors-200 text-red-500 p-2 rounded-xl" onClick={(e) => deleteRh(id)} />
-    </div>
-  </div>
-);
+  );
 }
 export const getServerSideProps = requirePageAuth;
 
