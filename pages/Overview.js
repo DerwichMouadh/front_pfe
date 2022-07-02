@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar";
 import { requirePageAuth } from "../utils/auth";
 
 
-function Dashboard() {
+function Overview() {
   return (
     <div className='flex'><Head>
     <title>PFE</title>
@@ -19,7 +19,7 @@ function Dashboard() {
 
   <Sidebar />
   <div className=" bg-myColors-100 h-screen w-7/12 relative">
-    <Navbar navBarTitle_1="Dashboard" navBarTitle_2="" />
+    <Navbar navBarTitle_1="Overview" navBarTitle_2="" />
     <HomeContent />
   </div>
   <RightSidebar /></div>
@@ -28,4 +28,4 @@ function Dashboard() {
 
 export const getServerSideProps = requirePageAuth;
 
-export default Dashboard
+export default Overview

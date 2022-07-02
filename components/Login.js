@@ -28,7 +28,7 @@ function Login() {
       setData(res.data);
       cookie.set("token", res.data.token, { expires: 1 });
       cookie.set("email", data.email, { expires: 1 });
-      router.push('/Dashboard')
+      router.push('/Overview')
 
     }).catch((err) => {
       console.log(err)

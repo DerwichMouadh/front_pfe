@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {
-  ViewBoardsIcon,
+  
   ArrowCircleRightIcon,
   ArrowCircleDownIcon,
+  
 } from "@heroicons/react/solid";
 import {
   UserIcon,
@@ -11,6 +12,8 @@ import {
   ClipboardIcon,
   CalendarIcon,
   ClipboardCheckIcon,
+  UserGroupIcon,
+  ViewGridIcon,
 } from "@heroicons/react/outline";
 import SidebarRow from "./SidebarRow";
 import Link from "next/link";
@@ -51,15 +54,15 @@ function Sidebar({token}) {
   return (
     <div className="bg-myColors-100 p-4 pb-8 text-sm font-medium w-2/12 min-w-[200px] flex flex-col space-y-3 h-screen">
       <div className="px-4 pt-4 pb-10">
-        <Link href="/Dashboard">
+        <Link href="/Overview">
           <a className="text-2xl font-bold text-white font-fancy">DashAdmin</a>
         </Link>
       </div>
       <div className="flex-grow scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/Dashboard">
+          <Link href="/Overview">
             <a className="w-full">
-              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+              <SidebarRow Icon={ViewGridIcon} title="Overview" />
             </a>
           </Link>
         </div>
@@ -109,51 +112,51 @@ function Sidebar({token}) {
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/Kanban">
+          <Link href="/Teams">
             <a className="w-full">
-              <SidebarRow Icon={ClipboardCheckIcon} title="Kanban" />
+              <SidebarRow Icon={UserGroupIcon} title="Teams" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/Dashboard">
+          <Link href="/Overview">
             <a className="w-full">
-              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+              <SidebarRow Icon={ViewGridIcon} title="Overview" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-          <Link href="/Dashboard">
+          <Link href="/Overview">
             <a className="w-full">
-              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+              <SidebarRow Icon={ViewGridIcon} title="Overview" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-          <Link href="/Dashboard">
+          <Link href="/Overview">
             <a className="w-full">
-              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+              <SidebarRow Icon={ViewGridIcon} title="Overview" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-          <Link href="/Dashboard">
+          <Link href="/Overview">
             <a className="w-full">
-              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+              <SidebarRow Icon={ViewGridIcon} title="Overview" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-          <Link href="/Dashboard">
+          <Link href="/Overview">
             <a className="w-full">
-              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+              <SidebarRow Icon={ViewGridIcon} title="Overview" />
             </a>
           </Link>
         </div>
         <div className="flex hover:rounded-2xl relative group hover:bg-myColors-300 ">
-          <Link href="/Dashboard">
+          <Link href="/Overview">
             <a className="w-full">
-              <SidebarRow Icon={ViewBoardsIcon} title="Dashboard" />
+              <SidebarRow Icon={ViewGridIcon} title="Overview" />
             </a>
           </Link>
         </div>

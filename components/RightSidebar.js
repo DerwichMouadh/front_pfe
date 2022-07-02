@@ -1,5 +1,5 @@
 import { SearchIcon, ClockIcon } from "@heroicons/react/outline";
-import { UserIcon } from "@heroicons/react/solid";
+import { ClipboardCheckIcon, UserIcon } from "@heroicons/react/solid";
 import React from "react";
 import RowCard from "./RowCard";
 import SmallSquare from "./SmallSquare";
@@ -16,41 +16,53 @@ function RightSidebar() {
         <SearchIcon className="h-10 w-10 px-2 hover:opacity-100 text-white opacity-60" />
       </div>
       <div className="flex-grow flex-col space-y-3">
-        <h2 className="font-semibold text-xl font-fancy">Title 1</h2>
-        <div className="grid grid-cols-3 gap-4 p-3">
-          <SmallSquare Icon={ClockIcon} title="Attendance" color />
-          <SmallSquare Icon={ClockIcon} title="Attendance" />
-          <SmallSquare Icon={ClockIcon} title="Attendance" color />
-          <SmallSquare Icon={ClockIcon} title="Attendance" />
-          <SmallSquare Icon={ClockIcon} title="Attendance" color />
-          <SmallSquare Icon={ClockIcon} title="Attendance" />
+        <h2 className="font-semibold text-xl font-fancy">Admin Panel</h2>
+        <div className="flex-xol space-y-4">
+          <div className=" bg-myColors-300 group p-5 rounded-xl flex items-center space-x-6 cursor-pointer hover:bg-green-500">
+            <div>
+              <ClipboardCheckIcon className="h-10 w-10 text-green-500 bg-green-100 p-2 rounded-xl" />
+            </div>
+            <div className="flex-col space-y-1">
+              <p className=" font-medium">Assign Projects</p>
+              <p className="text-xs text-gray-500 group-hover:text-white">Assign projects to your teams</p>
+            </div>
+          </div>
+          <div className=" bg-myColors-300 group p-5 rounded-xl flex items-center space-x-6 cursor-pointer hover:bg-violet-500">
+            <div>
+              <ClipboardCheckIcon className="h-10 w-10 text-violet-500 bg-violet-100 p-2 rounded-xl" />
+            </div>
+            <div className="flex-col space-y-1">
+              <p className="font-medium">Assign Tasks</p>
+              <p className="text-xs text-gray-500 group-hover:text-white">Assign tasks to your teams</p>
+            </div>
+          </div>
         </div>
       </div>
-      
+
       <div className="flex-col relative scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
         <h2 className="fixed bg-myColors-100 font-semibold text-xl w-full pb-4 z-50 font-fancy">Title 2</h2>
         <div className="pt-9">
           <div>
-          <RowCard Icon={UserIcon} fullName="Mustapha El Masri" group="Makarem FC" hours="0" bgColorBlue bgColor="myColors-300"/>
+            <RowCard Icon={UserIcon} fullName="Mustapha El Masri" group="Makarem FC" hours="0" bgColorBlue bgColor="myColors-300" />
           </div>
           <div>
-          <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorYellow bgColor="myColors-300"/>
+            <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorYellow bgColor="myColors-300" />
           </div>
           <div>
-          <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorBlue bgColor="myColors-300"/>
+            <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorBlue bgColor="myColors-300" />
           </div>
           <div>
-          <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorOrange bgColor="myColors-300"/>
+            <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorOrange bgColor="myColors-300" />
           </div>
           <div>
-          <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorYellow bgColor="myColors-300"/>
+            <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorYellow bgColor="myColors-300" />
           </div>
           <div>
-          <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorOrange bgColor="myColors-300"/>
+            <RowCard Icon={UserIcon} fullName="Karim Benzema" group="Real Madrid FC" hours="27" bgColorOrange bgColor="myColors-300" />
           </div>
         </div>
       </div>
-      
+
     </div>
   );
 }
