@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RhService from "../services/RhService";
 import ProfileUserRow from "./ProfileUserRow";
-import { CakeIcon, BriefcaseIcon } from "@heroicons/react/solid";
+import { CakeIcon, BriefcaseIcon, LocationMarkerIcon } from "@heroicons/react/solid";
 import { ChatIcon, PencilAltIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,6 +24,10 @@ function ProfileUserContent({ _id }) {
   }, [_id]);
 
   let convDate = new Date(rh.date_of_birth)
+  const currentDate = new Date()
+  const currentYear = currentDate.getFullYear()
+  const userYear = convDate.getFullYear()
+  let age = parseInt(currentYear) - parseInt(userYear)
 
   return (
     <div className="bg-myColors-200 flex-col rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden text-sm">
@@ -95,18 +99,18 @@ function ProfileUserContent({ _id }) {
             />
             <ProfileUserRow
               Icon={CakeIcon}
-              title="Date of Birth"
-              info={convDate.toUTCString().substring(5, 16)}
+              title="Age"
+              info={age}
+            />
+            <ProfileUserRow
+              Icon={LocationMarkerIcon}
+              title="Location"
+              info={rh.location}
             />
             <ProfileUserRow
               Icon={CakeIcon}
-              title="Date of Birth"
-              info={convDate.toUTCString().substring(5, 16)}
-            />
-            <ProfileUserRow
-              Icon={CakeIcon}
-              title="Date of Birth"
-              info={convDate.toUTCString().substring(5, 16)}
+              title="Gender"
+              info={rh.gender}
             />
             <ProfileUserRow
               Icon={CakeIcon}

@@ -17,10 +17,10 @@ function RightSidebar() {
       </div>
       <div className="flex-grow flex-col space-y-3">
         <h2 className="font-semibold text-xl font-fancy">Admin Panel</h2>
-        <div className="flex-xol space-y-4">
+        <div className="flex-xol space-y-4 pt-1">
           <div className=" bg-myColors-300 group p-5 rounded-xl flex items-center space-x-6 cursor-pointer hover:bg-green-500">
             <div>
-              <ClipboardCheckIcon className="h-10 w-10 text-green-500 bg-green-100 p-2 rounded-xl" />
+              <ClipboardCheckIcon className="h-10 w-10 text-green-500 bg-green-200 p-1 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className=" font-medium">Assign Projects</p>
@@ -29,7 +29,7 @@ function RightSidebar() {
           </div>
           <div className=" bg-myColors-300 group p-5 rounded-xl flex items-center space-x-6 cursor-pointer hover:bg-violet-500">
             <div>
-              <ClipboardCheckIcon className="h-10 w-10 text-violet-500 bg-violet-100 p-2 rounded-xl" />
+              <ClipboardCheckIcon className="h-10 w-10 text-violet-500 bg-violet-200 p-1 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className="font-medium">Assign Tasks</p>

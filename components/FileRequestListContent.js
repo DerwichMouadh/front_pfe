@@ -62,7 +62,7 @@ function FileRequestListContent({ token }) {
             <button
               className={`${
                 ready ? "bg-myColors-600" : "bg-myColors-500"
-              } text-white p-1 px-4  rounded-md`}
+              } text-white p-1 px-4  rounded-md hover:bg-myColors-600`}
               onClick={() => {
                 setReady(true);
                 setInprogress(false);
@@ -75,7 +75,7 @@ function FileRequestListContent({ token }) {
             <button
               className={`${
                 inprogress ? "bg-myColors-600" : "bg-myColors-500"
-              } text-white p-1 px-4  rounded-md`}
+              } text-white p-1 px-4  rounded-md hover:bg-myColors-600`}
               onClick={() => {
                 setReady(false);
                 setInprogress(true);
@@ -88,7 +88,7 @@ function FileRequestListContent({ token }) {
             <button
               className={`${
                 refused ? "bg-myColors-600" : "bg-myColors-500"
-              } text-white p-1 px-4  rounded-md`}
+              } text-white p-1 px-4  rounded-md hover:bg-myColors-600`}
               onClick={() => {
                 setReady(false);
                 setInprogress(false);
@@ -101,7 +101,7 @@ function FileRequestListContent({ token }) {
             <button
               className={`${
                 all ? "bg-myColors-600" : "bg-myColors-500"
-              } text-white p-1 px-4  rounded-md`}
+              } text-white p-1 px-4  rounded-md hover:bg-myColors-600`}
               onClick={() => {
                 setReady(false);
                 setInprogress(false);

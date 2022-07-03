@@ -32,8 +32,8 @@ function Navbar({ navBarTitle_1, navBarTitle_2 }) {
       </div>
       <div className="flex space-x-1 ">
 
-        <NavbarItem Icon={CogIcon} />
         <NavbarItem Icon={BellIcon} alert={true} />
+        <NavbarItem Icon={LogoutIcon} />
         <div onClick={() => setOpen(!open)} className="text-white flex space-x-2 items-center cursor-pointer pl-5 relative ">
           <Image
             alt=""

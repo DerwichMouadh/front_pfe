@@ -15,6 +15,10 @@ function HomeContent() {
   let filtredFilesReady = [];
   let filtredFilesRefused = [];
 
+  let filtred1825 = [];
+  let filtred2635 = [];
+  let filtredsup35 = [];
+
   let totalFemaleTab = [];
   let totalMaleTab = [];
 
@@ -84,7 +88,39 @@ function HomeContent() {
   let totalFemalePer = (100 * totalFemale) / (totalFemale + totalMale);
   let totalMalePer = (100 * totalMale) / (totalFemale + totalMale);
 
-  console.log("ppppppppp: " + totalMale);
+
+  filtred1825 = users.filter((user) => {
+    let convDate = new Date(user.date_of_birth)
+    const currentDate = new Date()
+    const currentYear = currentDate.getFullYear()
+    const userYear = convDate.getFullYear()
+    let age = parseInt(currentYear) - parseInt(userYear)
+    return (age > 17 && age < 25)
+  });
+  filtred2635 = users.filter((user) => {
+    let convDate = new Date(user.date_of_birth)
+    const currentDate = new Date()
+    const currentYear = currentDate.getFullYear()
+    const userYear = convDate.getFullYear()
+    let age = parseInt(currentYear) - parseInt(userYear)
+    return (age > 24 && age < 35)
+  });
+  filtredsup35 = users.filter((user) => {
+    let convDate = new Date(user.date_of_birth)
+    const currentDate = new Date()
+    const currentYear = currentDate.getFullYear()
+    const userYear = convDate.getFullYear()
+    let age = parseInt(currentYear) - parseInt(userYear)
+    return (age > 34)
+  });
+
+  let total1825 = filtred1825.length;
+  let total2635 = filtred2635.length;
+  let totalsup35 = filtredsup35.length;
+
+  let total1825per = 100 * total1825 / (total1825 + total2635 + totalsup35);
+  let total2635per = 100 * total2635 / (total1825 + total2635 + totalsup35);
+  let totalsup35per = 100 * totalsup35 / (total1825 + total2635 + totalsup35);
 
   return (
     <div className="bg-myColors-200 rounded-2xl grid grid-cols-6 gap-4 w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
@@ -98,24 +134,38 @@ function HomeContent() {
         />
       </div>
       <div className="bg-myColors-700 p-4 rounded-2xl col-span-3">
-        <h1 className="text-center pb-4">Doughnut Chart Diagram</h1>
+        <h1 className="text-center pb-4">User persentage by age</h1>
         <DoughnutChart
-          numInProgress={numInProgress}
-          numReady={numReady}
-          numRefused={numRefused}
+          total1825={total1825}
+          total2635={total2635}
+          totalsup35={totalsup35}
         />
+        <div className="flex justify-evenly pt-6">
+          <div className="flex-col text-center">
+            <p className=" font-semibold">{total1825per.toString().substring(0, 5)}%</p>
+            <p className=" text-sm text-myColors-600">18-24</p>
+          </div>
+          <div className="flex-col text-center">
+            <p className=" font-semibold">{total2635per.toString().substring(0, 5)}%</p>
+            <p className=" text-sm text-myColors-600">25-34</p>
+          </div>
+          <div className="flex-col text-center">
+            <p className=" font-semibold">{totalsup35per.toString().substring(0, 5)}%</p>
+            <p className=" text-sm text-myColors-600">35+</p>
+          </div>
+        </div>
       </div>
       <div className="bg-myColors-700 p-4 rounded-2xl col-span-2">
-        <h1 className="text-center pb-4">Pie Chart Diagram</h1>
+        <h1 className="text-center pb-4">User persentage by gender</h1>
         <PieChart totalFemale={totalFemale} totalMale={totalMale} />
-        <div className="flex-col px-14">
-          <div className="flex space-x-2 items-baseline justify-between">
-            <p className=" text-sm text-myColors-600">Male %:</p>
-            <p>{totalMalePer.toString().substring(0, 5)}</p>
+        <div className="flex justify-evenly">
+          <div className="flex-col text-center">
+            <p className=" font-semibold">{totalMalePer.toString().substring(0, 5)}%</p>
+            <p className=" text-sm text-myColors-600">Male</p>
           </div>
-          <div className="flex space-x-2 items-baseline justify-between">
-            <p className=" text-sm text-myColors-600">Female %:</p>
-            <p>{totalFemalePer.toString().substring(0, 5)}</p>
+          <div className="flex-col text-center">
+            <p className=" font-semibold">{totalFemalePer.toString().substring(0, 5)}%</p>
+            <p className=" text-sm text-myColors-600">Female</p>
           </div>
         </div>
       </div>

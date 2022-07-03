@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
-
+import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
+import KanbanContent from "../../components/KanbanContent";
 import RightSidebar from "../../components/RightSidebar";
+import RhService from "../../services/RhService";
 
-import UserListContent from "../../components/UserListContent";
-import Pagination from "../../components/Pagination";
-import FileRequestListContent from "../../components/FileRequestListContent";
-import { requirePageAuth } from "../../utils/auth";
-
-function FileRequestList({ token }) {
+function KanbanTeam() {
   return (
     <div className="flex">
       <Head>
@@ -24,13 +21,13 @@ function FileRequestList({ token }) {
       </Head>
       <Sidebar />
       <div className="bg-myColors-100 h-screen w-7/12 relative">
-        <Navbar navBarTitle_1="Files" navBarTitle_2="File Requests List" />
-        <FileRequestListContent token={token} />
+        <Navbar navBarTitle_1="Teams" navBarTitle_2="Team Tasks" />
+        <KanbanContent  />
       </div>
       <RightSidebar />
     </div>
   );
 }
 
-export const getServerSideProps = requirePageAuth;
-export default FileRequestList;
+export default KanbanTeam;
+

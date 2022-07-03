@@ -1,20 +1,21 @@
 import Head from "next/head";
 import Image from "next/image";
-import HomeContent from "../components/HomeContent";
-import KanbanContent from "../components/KanbanContent";
-import Navbar from "../components/Navbar";
-import RightSidebar from "../components/RightSidebar";
-import ScheduleContent from "../components/ScheduleContent";
-import Sidebar from "../components/Sidebar";
-import { requirePageAuth } from "../utils/auth";
+import HomeContent from "../../components/HomeContent";
+import KanbanContent from "../../components/KanbanContent";
+import Navbar from "../../components/Navbar";
+import RightSidebar from "../../components/RightSidebar";
+import ScheduleContent from "../../components/ScheduleContent";
+import Sidebar from "../../components/Sidebar";
+import { requirePageAuth } from "../../utils/auth";
 import {
   UserGroupIcon,
   DotsVerticalIcon,
   ClipboardCheckIcon,
 } from "@heroicons/react/solid";
 import React, { useState } from "react";
+import Link from "next/link";
 
-function Teams() {
+function TeamsList() {
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
@@ -46,7 +47,7 @@ function Teams() {
         <div className="bg-myColors-200 rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden grid grid-cols-2 gap-4">
           <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-yellow-500">
             <div>
-              <UserGroupIcon className="h-10 w-10 text-yellow-500 bg-yellow-100 p-2 rounded-xl" />
+              <UserGroupIcon className="h-10 w-10 text-yellow-500 bg-yellow-200 p-2 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className=" text-xs">Team Name</p>
@@ -80,7 +81,7 @@ function Teams() {
           </div>
           <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-lime-500">
             <div>
-              <UserGroupIcon className="h-10 w-10 text-lime-500 bg-lime-100 p-2 rounded-xl" />
+              <UserGroupIcon className="h-10 w-10 text-lime-500 bg-lime-200 p-2 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className=" text-xs">Team Name</p>
@@ -97,24 +98,32 @@ function Teams() {
                 setOpen7(false);
                 setOpen8(false);
               }}
-              className="h-10 w-10 hover:text-yellow-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
+              className="h-10 w-10 hover:text-lime-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
             />
             {open2 && (
               <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <UserGroupIcon className="h-5 w-5" />
-                  <p>Members</p>
-                </div>
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <ClipboardCheckIcon className="h-5 w-5" />
-                  <p>Tasks</p>
-                </div>
+                <Link href="/Users/UserList">
+                  <a>
+                    <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
+                      <UserGroupIcon className="h-5 w-5" />
+                      <p>Members</p>
+                    </div>
+                  </a>
+                </Link>
+                <Link href="/Teams/KanbanTeam">
+                  <a>
+                    <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
+                      <ClipboardCheckIcon className="h-5 w-5" />
+                      <p>Tasks</p>
+                    </div>
+                  </a>
+                </Link>
               </div>
             )}
           </div>
           <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-green-500">
             <div>
-              <UserGroupIcon className="h-10 w-10 text-green-500 bg-green-100 p-2 rounded-xl" />
+              <UserGroupIcon className="h-10 w-10 text-green-500 bg-green-200 p-2 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className=" text-xs">Team Name</p>
@@ -131,7 +140,7 @@ function Teams() {
                 setOpen7(false);
                 setOpen8(false);
               }}
-              className="h-10 w-10 hover:text-yellow-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
+              className="h-10 w-10 hover:text-green-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
             />
             {open3 && (
               <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
@@ -148,7 +157,7 @@ function Teams() {
           </div>
           <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-blue-500">
             <div>
-              <UserGroupIcon className="h-10 w-10 text-blue-500 bg-blue-100 p-2 rounded-xl" />
+              <UserGroupIcon className="h-10 w-10 text-blue-500 bg-blue-200 p-2 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className=" text-xs">Team Name</p>
@@ -165,7 +174,7 @@ function Teams() {
                 setOpen7(false);
                 setOpen8(false);
               }}
-              className="h-10 w-10 hover:text-yellow-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
+              className="h-10 w-10 hover:text-blue-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
             />
             {open4 && (
               <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
@@ -180,9 +189,9 @@ function Teams() {
               </div>
             )}
           </div>
-          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-amber-500">
+          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-fuchsia-500">
             <div>
-              <UserGroupIcon className="h-10 w-10 text-amber-500 bg-amber-100 p-2 rounded-xl" />
+              <UserGroupIcon className="h-10 w-10 text-fuchsia-500 bg-fuchsia-200 p-2 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className=" text-xs">Team Name</p>
@@ -199,7 +208,7 @@ function Teams() {
                 setOpen7(false);
                 setOpen8(false);
               }}
-              className="h-10 w-10 hover:text-yellow-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
+              className="h-10 w-10 hover:text-fuchsia-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
             />
             {open5 && (
               <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
@@ -216,7 +225,7 @@ function Teams() {
           </div>
           <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-slate-500">
             <div>
-              <UserGroupIcon className="h-10 w-10 text-slate-500 bg-slate-100 p-2 rounded-xl" />
+              <UserGroupIcon className="h-10 w-10 text-slate-500 bg-slate-200 p-2 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className=" text-xs">Team Name</p>
@@ -233,7 +242,7 @@ function Teams() {
                 setOpen7(false);
                 setOpen8(false);
               }}
-              className="h-10 w-10 hover:text-yellow-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
+              className="h-10 w-10 hover:text-slate-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
             />
             {open6 && (
               <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
@@ -250,7 +259,7 @@ function Teams() {
           </div>
           <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-violet-500">
             <div>
-              <UserGroupIcon className="h-10 w-10 text-violet-500 bg-violet-100 p-2 rounded-xl" />
+              <UserGroupIcon className="h-10 w-10 text-violet-500 bg-violet-200 p-2 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className=" text-xs">Team Name</p>
@@ -267,7 +276,7 @@ function Teams() {
                 setOpen1(false);
                 setOpen8(false);
               }}
-              className="h-10 w-10 hover:text-yellow-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
+              className="h-10 w-10 hover:text-violet-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
             />
             {open7 && (
               <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
@@ -284,7 +293,7 @@ function Teams() {
           </div>
           <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-sky-500">
             <div>
-              <UserGroupIcon className="h-10 w-10 text-sky-500 bg-sky-100 p-2 rounded-xl" />
+              <UserGroupIcon className="h-10 w-10 text-sky-500 bg-sky-200 p-2 rounded-xl" />
             </div>
             <div className="flex-col space-y-1">
               <p className=" text-xs">Team Name</p>
@@ -301,7 +310,7 @@ function Teams() {
                 setOpen7(false);
                 setOpen1(false);
               }}
-              className="h-10 w-10 hover:text-yellow-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
+              className="h-10 w-10 hover:text-sky-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
             />
             {open8 && (
               <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
@@ -325,4 +334,4 @@ function Teams() {
 
 export const getServerSideProps = requirePageAuth;
 
-export default Teams;
+export default TeamsList;

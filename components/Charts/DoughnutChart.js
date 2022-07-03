@@ -4,14 +4,14 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(Tooltip, Legend, ArcElement);
 
-function DoughnutChart({ numInProgress, numReady, numRefused }) {
+function DoughnutChart({ total1825, total2635, totalsup35 }) {
   var data = {
     // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    labels: ["Ready", "In Progress", "Refused"],
+    labels: [" 18-24 ", " 25-34 ", " 35+ "],
     datasets: [
       {
         label: "# of Files",
-        data: [numReady, numInProgress, numRefused],
+        data: [total1825, total2635, totalsup35],
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
           "rgba(54, 162, 235, 0.8)",
