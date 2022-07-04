@@ -4,14 +4,14 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(Tooltip, Legend, ArcElement);
 
-function DoughnutChart({ total1825, total2635, totalsup35 }) {
+function DoughnutChart({ total1825, total2635,total3544, totalsup44 }) {
   var data = {
     // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    labels: [" 18-24 ", " 25-34 ", " 35+ "],
+    labels: [" 18-24 ", " 25-34 ", " 35-44 ", " 45+ "],
     datasets: [
       {
         label: "# of Files",
-        data: [total1825, total2635, totalsup35],
+        data: [total1825, total2635, total3544, totalsup44],
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
           "rgba(54, 162, 235, 0.8)",
@@ -45,7 +45,7 @@ function DoughnutChart({ total1825, total2635, totalsup35 }) {
     plugins: {
       legend: {
         labels: {
-          color: 'rgba(255, 255, 255, 0.8)',
+          color: 'rgba(255, 255, 255, 1)',
         },
         align: 'start',
       }

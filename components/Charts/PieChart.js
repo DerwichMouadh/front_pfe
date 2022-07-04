@@ -50,9 +50,9 @@ function PieChart({ totalFemale, totalMale }) {
     plugins: {
       legend: {
         labels: {
-          color: 'rgba(255, 255, 255, 0.8)',
+          color: 'rgba(255, 255, 255, 1)',
         },
-        align: 'start',
+        align: 'center',
       }
     }
   };

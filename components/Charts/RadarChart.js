@@ -13,27 +13,17 @@ ChartJS.register(CategoryScale, LinearScale, RadialLinearScale, PointElement);
 function RadarChart({ numInProgress, numReady, numRefused }) {
     var data = {
         labels: [
-            'Eating',
-            'Drinking',
-            'Sleeping',
-            'Designing',
-            'Coding',
-            'Cycling',
-            'Running'
+            'Project Manager',
+            'Front End Developer',
+            'Back End Developer',
+            'Software Architect',
+            'UI/UX Designer',
+            'QA Engineer',
+            'Business Analyst'
         ],
         datasets: [{
-            label: 'My First Dataset',
-            data: [65, 59, 90, 81, 56, 55, 40],
-            fill: true | 'rgba(255, 99, 132, 0.8)',
-            backgroundColor: 'rgba(255, 99, 132, 0.8)',
-            borderColor: 'rgb(255, 99, 132)',
-            pointBackgroundColor: 'rgb(255, 99, 132)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(255, 99, 132)'
-        }, {
-            label: 'My Second Dataset',
-            data: [28, 48, 40, 19, 96, 27, 100],
+            label: 'Male',
+            data: [1, 2, 2, 1, 0, 1, 1],
             fill: true,
             backgroundColor: 'rgba(54, 162, 235, 0.8)',
             borderColor: 'rgb(54, 162, 235)',
@@ -41,6 +31,16 @@ function RadarChart({ numInProgress, numReady, numRefused }) {
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgb(54, 162, 235)'
+        }, {
+            label: 'Female',
+            data: [0, 0, 0, 0, 1, 1, 0],
+            fill: true | 'rgba(255, 99, 132, 0.8)',
+            backgroundColor: 'rgba(255, 99, 132, 0.8)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
         }
         ],
     };
@@ -50,14 +50,14 @@ function RadarChart({ numInProgress, numReady, numRefused }) {
         scales: {
             r: {
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.1)',
+                    color: 'rgba(255, 255, 255, 0.2)',
                 }
             },
         },
         plugins: {
             legend: {
                 labels: {
-                    color: 'rgba(255, 255, 255, 0.8)',
+                    color: 'rgba(255, 255, 255, 1)',
                 }
             }
         }

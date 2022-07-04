@@ -11,62 +11,62 @@ import { Bar } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-function BarChart({ numInProgress, numReady, numRefused }) {
-  
+function BarChart2() {
   var data = {
     // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    labels: ["Ready", "In Progress", "Refused"],
+    labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
       {
-        label: " # of Files",
-        data: [numReady, numInProgress, numRefused],
+        label: "Presential",
+        data: [2, 1, 2, 6, 9, 9],
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
-          "rgba(54, 162, 235, 0.8)",
-          "rgba(255, 206, 86, 0.8)",
-          "rgba(75, 192, 192, 0.8)",
-          "rgba(153, 102, 255, 0.8)",
-          "rgba(255, 159, 64, 0.8)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
         ],
         borderWidth: 3,
-        barPercentage: 1.0,
-
+        barPercentage: 0.5,
+      },
+      {
+        label: "Online",
+        data: [8, 9, 8, 4, 1, 1],
+        backgroundColor: [
+          "rgba(54, 162, 235, 0.8)",
+        ],
+        borderColor: [
+          "rgba(54, 162, 235, 1)",
+        ],
+        borderWidth: 3,
+        barPercentage: 0.5,
       },
     ],
   };
 
   var options = {
-    indexAxis: 'x',
+    indexAxis: "x",
     maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
         grid: {
-          color: 'rgba(255, 255, 255, 0.1)',
+          color: "rgba(255, 255, 255, 0.1)",
           display: true,
         },
       },
       x: {
         grid: {
-          color: 'rgba(255, 255, 255, 0.1)'
-        }
+          color: "rgba(255, 255, 255, 0.1)",
+        },
       },
     },
     plugins: {
       legend: {
         labels: {
-          color: 'rgba(255, 255, 255, 1)',
-        }
-      }
-    }
+          color: "rgba(255, 255, 255, 1)",
+        },
+      },
+    },
   };
 
   return (
@@ -76,4 +76,4 @@ function BarChart({ numInProgress, numReady, numRefused }) {
   );
 }
 
-export default BarChart;
+export default BarChart2;

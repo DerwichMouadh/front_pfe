@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PencilAltIcon, XCircleIcon } from "@heroicons/react/outline";
 import axios from "axios";
 import BarChart from "./Charts/BarChart";
+import BarChart2 from "./Charts/BarChart2";
 import DoughnutChart from "./Charts/DoughnutChart";
 import LineChart from "./Charts/LineChart";
 import PieChart from "./Charts/PieChart";
@@ -17,7 +18,8 @@ function HomeContent() {
 
   let filtred1825 = [];
   let filtred2635 = [];
-  let filtredsup35 = [];
+  let filtred3544 = [];
+  let filtredsup44 = [];
 
   let totalFemaleTab = [];
   let totalMaleTab = [];
@@ -105,42 +107,49 @@ function HomeContent() {
     let age = parseInt(currentYear) - parseInt(userYear)
     return (age > 24 && age < 35)
   });
-  filtredsup35 = users.filter((user) => {
+  filtred3544 = users.filter((user) => {
     let convDate = new Date(user.date_of_birth)
     const currentDate = new Date()
     const currentYear = currentDate.getFullYear()
     const userYear = convDate.getFullYear()
     let age = parseInt(currentYear) - parseInt(userYear)
-    return (age > 34)
+    return (age > 34 && age < 45)
+  });
+  filtredsup44 = users.filter((user) => {
+    let convDate = new Date(user.date_of_birth)
+    const currentDate = new Date()
+    const currentYear = currentDate.getFullYear()
+    const userYear = convDate.getFullYear()
+    let age = parseInt(currentYear) - parseInt(userYear)
+    return (age > 44)
   });
 
   let total1825 = filtred1825.length;
   let total2635 = filtred2635.length;
-  let totalsup35 = filtredsup35.length;
+  let total3544 = filtred3544.length;
+  let totalsup44 = filtredsup44.length;
 
-  let total1825per = 100 * total1825 / (total1825 + total2635 + totalsup35);
-  let total2635per = 100 * total2635 / (total1825 + total2635 + totalsup35);
-  let totalsup35per = 100 * totalsup35 / (total1825 + total2635 + totalsup35);
+  let total1825per = 100 * total1825 / (total1825 + total2635 + total3544 + totalsup44);
+  let total2635per = 100 * total2635 / (total1825 + total2635 + total3544 + totalsup44);
+  let total3544per = 100 * total3544 / (total1825 + total2635 + total3544 + totalsup44);
+  let totalsup44per = 100 * totalsup44 / (total1825 + total2635 + total3544 + totalsup44);
 
   return (
     <div className="bg-myColors-200 rounded-2xl grid grid-cols-6 gap-4 w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
-      <div className="bg-myColors-700 p-4 rounded-2xl col-span-3">
-        <h1 className="text-center pb-4">Bar Chart Diagram</h1>
-        {/* <BarChart /> */}
-        <BarChart
-          numInProgress={numInProgress}
-          numReady={numReady}
-          numRefused={numRefused}
-        />
+      
+      <div className="bg-myColors-700 p-4 rounded-2xl col-span-4">
+        <h1 className="text-center text-lg pb-4">Bar Chart Diagram</h1>
+        <BarChart2 totalFemale={totalFemale} totalMale={totalMale} />
       </div>
-      <div className="bg-myColors-700 p-4 rounded-2xl col-span-3">
-        <h1 className="text-center pb-4">User persentage by age</h1>
+      <div className="bg-myColors-700 p-4 rounded-2xl col-span-2">
+        <h1 className="text-center text-lg pb-4">User persentage by age</h1>
         <DoughnutChart
           total1825={total1825}
           total2635={total2635}
-          totalsup35={totalsup35}
+          total3544={total3544}
+          totalsup44={totalsup44}
         />
-        <div className="flex justify-evenly pt-6">
+        <div className="flex justify-evenly">
           <div className="flex-col text-center">
             <p className=" font-semibold">{total1825per.toString().substring(0, 5)}%</p>
             <p className=" text-sm text-myColors-600">18-24</p>
@@ -150,13 +159,17 @@ function HomeContent() {
             <p className=" text-sm text-myColors-600">25-34</p>
           </div>
           <div className="flex-col text-center">
-            <p className=" font-semibold">{totalsup35per.toString().substring(0, 5)}%</p>
-            <p className=" text-sm text-myColors-600">35+</p>
+            <p className=" font-semibold">{total3544per.toString().substring(0, 5)}%</p>
+            <p className=" text-sm text-myColors-600">35-44</p>
+          </div>
+          <div className="flex-col text-center">
+            <p className=" font-semibold">{totalsup44per.toString().substring(0, 5)}%</p>
+            <p className=" text-sm text-myColors-600">45+</p>
           </div>
         </div>
       </div>
       <div className="bg-myColors-700 p-4 rounded-2xl col-span-2">
-        <h1 className="text-center pb-4">User persentage by gender</h1>
+        <h1 className="text-center text-lg pb-4">User persentage by gender</h1>
         <PieChart totalFemale={totalFemale} totalMale={totalMale} />
         <div className="flex justify-evenly">
           <div className="flex-col text-center">
@@ -170,15 +183,12 @@ function HomeContent() {
         </div>
       </div>
       <div className="bg-myColors-700 p-4 rounded-2xl col-span-4">
-        <h1 className="text-center pb-4">Line Chart Diagram</h1>
+        <h1 className="text-center text-lg pb-4">Line Chart Diagram</h1>
         <LineChart
-          numInProgress={numInProgress}
-          numReady={numReady}
-          numRefused={numRefused}
         />
       </div>
       <div className="bg-myColors-700 p-4 rounded-2xl col-span-4">
-        <h1 className="text-center pb-4">Radar Chart Diagram</h1>
+        <h1 className="text-center text-lg pb-4">Radar Chart Diagram</h1>
         <RadarChart
           numInProgress={numInProgress}
           numReady={numReady}
@@ -186,8 +196,13 @@ function HomeContent() {
         />
       </div>
       <div className="bg-myColors-700 p-4 rounded-2xl col-span-2">
-        <h1 className="text-center pb-4">Pie Chart Diagram</h1>
-        <PieChart totalFemale={totalFemale} totalMale={totalMale} />
+        <h1 className="text-center text-lg pb-4">Bar Chart Diagram</h1>
+        {/* <BarChart /> */}
+        <BarChart
+          numInProgress={numInProgress}
+          numReady={numReady}
+          numRefused={numRefused}
+        />
       </div>
     </div>
   );
