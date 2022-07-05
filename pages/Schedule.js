@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import HomeContent from "../components/HomeContent";
+import KanbanContent from "../components/KanbanContent";
 import Navbar from "../components/Navbar";
 import RightSidebar from "../components/RightSidebar";
 import ScheduleContent from "../components/ScheduleContent";
@@ -22,7 +23,8 @@ function Schedule() {
   <Sidebar />
   <div className=" bg-myColors-100 h-screen w-7/12 relative">
     <Navbar navBarTitle_1="Schedule" navBarTitle_2="" />
-    <ScheduleContent />
+    {/* <ScheduleContent /> */}
+    <KanbanContent />
   </div>
   <RightSidebar /></div>
   )

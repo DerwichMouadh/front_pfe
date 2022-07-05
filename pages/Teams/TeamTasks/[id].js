@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Navbar from "../../components/Navbar";
-import Sidebar from "../../components/Sidebar";
-import KanbanContent from "../../components/KanbanContent";
-import RightSidebar from "../../components/RightSidebar";
-import RhService from "../../services/RhService";
+import Navbar from "../../../components/Navbar";
+import Sidebar from "../../../components/Sidebar";
+import KanbanContent from "../../../components/KanbanContent";
+import RightSidebar from "../../../components/RightSidebar";
+import RhService from "../../../services/RhService";
 
-function KanbanTeam() {
+function TeamTasks({_id}) {
+  const router = useRouter();
+  const { id } = router.query;
+
   return (
     <div className="flex">
       <Head>
@@ -22,12 +25,12 @@ function KanbanTeam() {
       <Sidebar />
       <div className="bg-myColors-100 h-screen w-7/12 relative">
         <Navbar navBarTitle_1="Teams" navBarTitle_2="Team Tasks" />
-        <KanbanContent  />
+        <KanbanContent _id={id} />
       </div>
       <RightSidebar />
     </div>
   );
 }
 
-export default KanbanTeam;
+export default TeamTasks;
 

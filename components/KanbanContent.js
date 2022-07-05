@@ -372,7 +372,7 @@ const kanbanData = [
   },
 ];
 
-const KanbanContent = () => (
+const KanbanContent = ({ _id }) => (
   <div className="bg-myColors-200 rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
     <KanbanComponent
       id="kanban"

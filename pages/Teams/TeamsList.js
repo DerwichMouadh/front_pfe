@@ -12,18 +12,35 @@ import {
   DotsVerticalIcon,
   ClipboardCheckIcon,
 } from "@heroicons/react/solid";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import TeamCard from "../../components/TeamCard";
+import axios from "axios";
 
 function TeamsList() {
-  const [open1, setOpen1] = useState(false);
-  const [open2, setOpen2] = useState(false);
-  const [open3, setOpen3] = useState(false);
-  const [open4, setOpen4] = useState(false);
-  const [open5, setOpen5] = useState(false);
-  const [open6, setOpen6] = useState(false);
-  const [open7, setOpen7] = useState(false);
-  const [open8, setOpen8] = useState(false);
+  const [teams, setTeams] = useState([]);
+  useEffect(() => {
+    getAll();
+  }, []);
+
+  const getAll = () => {
+    const config = {
+      method: "GET",
+      url: "http://localhost:5000/sections",
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
+    };
+    axios(config)
+      .then(({ status, data }) => {
+        if (status === 200) {
+          setTeams(data.data);
+        }
+      })
+      .catch((err) => {
+        console.error("err", err);
+      });
+  };
   return (
     <div className="flex">
       <Head>
@@ -45,286 +62,18 @@ function TeamsList() {
         <Navbar navBarTitle_1="Teams" navBarTitle_2="" />
         {/* <KanbanContent /> */}
         <div className="bg-myColors-200 rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden grid grid-cols-2 gap-4">
-          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-yellow-500">
-            <div>
-              <UserGroupIcon className="h-10 w-10 text-yellow-500 bg-yellow-200 p-2 rounded-xl" />
-            </div>
-            <div className="flex-col space-y-1">
-              <p className=" text-xs">Team Name</p>
-              <p className="  text-lg">Alpha</p>
-            </div>
-            <DotsVerticalIcon
-              onClick={() => {
-                setOpen1(!open1);
-                setOpen2(false);
-                setOpen3(false);
-                setOpen4(false);
-                setOpen5(false);
-                setOpen6(false);
-                setOpen7(false);
-                setOpen8(false);
-              }}
-              className="h-10 w-10 hover:text-yellow-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
+          {teams?.map(({ _id, name, employees, teamLeader, tasks }) => (
+            <TeamCard
+              id={_id}
+              _id={_id}
+              getAll={getAll}
+              key={_id}
+              name={name}
+              employees={employees}
+              teamLeader={teamLeader}
+              tasks={tasks}
             />
-            {open1 && (
-              <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <UserGroupIcon className="h-5 w-5" />
-                  <p>Members</p>
-                </div>
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <ClipboardCheckIcon className="h-5 w-5" />
-                  <p>Tasks</p>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-lime-500">
-            <div>
-              <UserGroupIcon className="h-10 w-10 text-lime-500 bg-lime-200 p-2 rounded-xl" />
-            </div>
-            <div className="flex-col space-y-1">
-              <p className=" text-xs">Team Name</p>
-              <p className="  text-lg">Beta</p>
-            </div>
-            <DotsVerticalIcon
-              onClick={() => {
-                setOpen2(!open2);
-                setOpen1(false);
-                setOpen3(false);
-                setOpen4(false);
-                setOpen5(false);
-                setOpen6(false);
-                setOpen7(false);
-                setOpen8(false);
-              }}
-              className="h-10 w-10 hover:text-lime-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
-            />
-            {open2 && (
-              <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
-                <Link href="/Users/UserList">
-                  <a>
-                    <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                      <UserGroupIcon className="h-5 w-5" />
-                      <p>Members</p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/Teams/KanbanTeam">
-                  <a>
-                    <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                      <ClipboardCheckIcon className="h-5 w-5" />
-                      <p>Tasks</p>
-                    </div>
-                  </a>
-                </Link>
-              </div>
-            )}
-          </div>
-          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-green-500">
-            <div>
-              <UserGroupIcon className="h-10 w-10 text-green-500 bg-green-200 p-2 rounded-xl" />
-            </div>
-            <div className="flex-col space-y-1">
-              <p className=" text-xs">Team Name</p>
-              <p className="  text-lg">Gamma</p>
-            </div>
-            <DotsVerticalIcon
-              onClick={() => {
-                setOpen3(!open3);
-                setOpen2(false);
-                setOpen1(false);
-                setOpen4(false);
-                setOpen5(false);
-                setOpen6(false);
-                setOpen7(false);
-                setOpen8(false);
-              }}
-              className="h-10 w-10 hover:text-green-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
-            />
-            {open3 && (
-              <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <UserGroupIcon className="h-5 w-5" />
-                  <p>Members</p>
-                </div>
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <ClipboardCheckIcon className="h-5 w-5" />
-                  <p>Tasks</p>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-blue-500">
-            <div>
-              <UserGroupIcon className="h-10 w-10 text-blue-500 bg-blue-200 p-2 rounded-xl" />
-            </div>
-            <div className="flex-col space-y-1">
-              <p className=" text-xs">Team Name</p>
-              <p className="  text-lg">Delta</p>
-            </div>
-            <DotsVerticalIcon
-              onClick={() => {
-                setOpen4(!open4);
-                setOpen2(false);
-                setOpen3(false);
-                setOpen1(false);
-                setOpen5(false);
-                setOpen6(false);
-                setOpen7(false);
-                setOpen8(false);
-              }}
-              className="h-10 w-10 hover:text-blue-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
-            />
-            {open4 && (
-              <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <UserGroupIcon className="h-5 w-5" />
-                  <p>Members</p>
-                </div>
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <ClipboardCheckIcon className="h-5 w-5" />
-                  <p>Tasks</p>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-fuchsia-500">
-            <div>
-              <UserGroupIcon className="h-10 w-10 text-fuchsia-500 bg-fuchsia-200 p-2 rounded-xl" />
-            </div>
-            <div className="flex-col space-y-1">
-              <p className=" text-xs">Team Name</p>
-              <p className="  text-lg">Epsilon</p>
-            </div>
-            <DotsVerticalIcon
-              onClick={() => {
-                setOpen5(!open5);
-                setOpen2(false);
-                setOpen3(false);
-                setOpen4(false);
-                setOpen1(false);
-                setOpen6(false);
-                setOpen7(false);
-                setOpen8(false);
-              }}
-              className="h-10 w-10 hover:text-fuchsia-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
-            />
-            {open5 && (
-              <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <UserGroupIcon className="h-5 w-5" />
-                  <p>Members</p>
-                </div>
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <ClipboardCheckIcon className="h-5 w-5" />
-                  <p>Tasks</p>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-slate-500">
-            <div>
-              <UserGroupIcon className="h-10 w-10 text-slate-500 bg-slate-200 p-2 rounded-xl" />
-            </div>
-            <div className="flex-col space-y-1">
-              <p className=" text-xs">Team Name</p>
-              <p className="  text-lg">Zeta</p>
-            </div>
-            <DotsVerticalIcon
-              onClick={() => {
-                setOpen6(!open6);
-                setOpen2(false);
-                setOpen3(false);
-                setOpen4(false);
-                setOpen5(false);
-                setOpen1(false);
-                setOpen7(false);
-                setOpen8(false);
-              }}
-              className="h-10 w-10 hover:text-slate-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
-            />
-            {open6 && (
-              <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <UserGroupIcon className="h-5 w-5" />
-                  <p>Members</p>
-                </div>
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <ClipboardCheckIcon className="h-5 w-5" />
-                  <p>Tasks</p>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-violet-500">
-            <div>
-              <UserGroupIcon className="h-10 w-10 text-violet-500 bg-violet-200 p-2 rounded-xl" />
-            </div>
-            <div className="flex-col space-y-1">
-              <p className=" text-xs">Team Name</p>
-              <p className="  text-lg">Eta</p>
-            </div>
-            <DotsVerticalIcon
-              onClick={() => {
-                setOpen7(!open7);
-                setOpen2(false);
-                setOpen3(false);
-                setOpen4(false);
-                setOpen5(false);
-                setOpen6(false);
-                setOpen1(false);
-                setOpen8(false);
-              }}
-              className="h-10 w-10 hover:text-violet-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
-            />
-            {open7 && (
-              <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <UserGroupIcon className="h-5 w-5" />
-                  <p>Members</p>
-                </div>
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <ClipboardCheckIcon className="h-5 w-5" />
-                  <p>Tasks</p>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 cursor-pointer hover:bg-sky-500">
-            <div>
-              <UserGroupIcon className="h-10 w-10 text-sky-500 bg-sky-200 p-2 rounded-xl" />
-            </div>
-            <div className="flex-col space-y-1">
-              <p className=" text-xs">Team Name</p>
-              <p className="  text-lg">Theta</p>
-            </div>
-            <DotsVerticalIcon
-              onClick={() => {
-                setOpen8(!open8);
-                setOpen2(false);
-                setOpen3(false);
-                setOpen4(false);
-                setOpen5(false);
-                setOpen6(false);
-                setOpen7(false);
-                setOpen1(false);
-              }}
-              className="h-10 w-10 hover:text-sky-500 hover:bg-white p-2 rounded-full absolute right-1 top-1"
-            />
-            {open8 && (
-              <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <UserGroupIcon className="h-5 w-5" />
-                  <p>Members</p>
-                </div>
-                <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
-                  <ClipboardCheckIcon className="h-5 w-5" />
-                  <p>Tasks</p>
-                </div>
-              </div>
-            )}
-          </div>
+          ))}
         </div>
       </div>
       <RightSidebar />
