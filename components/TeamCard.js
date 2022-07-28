@@ -14,7 +14,7 @@ function TeamCard({ id, _id, name, employees, teamLeader, tasks }) {
         <UserGroupIcon className="h-10 w-10 text-green-500 bg-green-200 p-2 rounded-xl" />
       </div>
       <div className="flex-col space-y-1">
-        <p className=" text-xs">Team Name</p>
+        <p className=" text-xs">Team&apos;s Name</p>
         <p className="  text-lg">{name}</p>
       </div>
       <DotsVerticalIcon
@@ -24,13 +24,13 @@ function TeamCard({ id, _id, name, employees, teamLeader, tasks }) {
       {open1 && (
         <div className="absolute top-12 right-1 bg-myColors-300 rounded-lg p-1">
           <Link href={"/Teams/TeamMembers/" + _id} key={_id}>
-            <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
+            <div className="flex items-center space-x-4 p-2 px-4 hover:bg-myColors-400 rounded-lg">
               <UserGroupIcon className="h-5 w-5" />
               <p>Members</p>
             </div>
           </Link>
           <Link href={"/Teams/TeamTasks/" + _id} key={_id}>
-            <div className="flex items-center space-x-2 p-2 hover:bg-myColors-400 rounded-lg">
+            <div className="flex items-center space-x-4 p-2 px-4 hover:bg-myColors-400 rounded-lg">
               <ClipboardCheckIcon className="h-5 w-5" />
               <p>Tasks</p>
             </div>

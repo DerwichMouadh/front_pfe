@@ -56,59 +56,71 @@ function TeamMembers({ _id }) {
       <div className="bg-myColors-100 h-screen w-7/12 relative">
         <Navbar navBarTitle_1="Teams" navBarTitle_2={name} />
         <div className="bg-myColors-200 rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
-          <UserRow
-            id={teamLeader._id}
-            key={teamLeader._id}
-            number="1"
-            firstname={teamLeader.firstname}
-            lastname={teamLeader.lastname}
-            location={teamLeader.location}
-            designation={teamLeader.designation}
-            date_of_birth={teamLeader.date_of_birth}
-            email={teamLeader.email}
-            gender={teamLeader.gender}
-            _id={teamLeader._id}
-            image={teamLeader.image}
-            role={teamLeader.role}
-          />
-          <div className="flex-col space-y-2 pt-2">
-            {teams?.map(
-              (
-                {
-                  id,
-                  _id,
-                  firstname,
-                  lastname,
-                  date_of_birth,
-                  gender,
-                  role,
-                  email,
-                  location,
-                  designation,
-                  image,
-                },
-                i
-              ) => (
-                <div key={_id}>
-                  <UserRow
-                    id={_id}
-                    getAll={getAll}
-                    key={_id}
-                    number={i+2}
-                    firstname={firstname}
-                    lastname={lastname}
-                    location={location}
-                    designation={designation}
-                    date_of_birth={date_of_birth}
-                    email={email}
-                    gender={gender}
-                    _id={_id}
-                    image={image}
-                    role={role}
-                  />
-                </div>
-              )
-            )}
+          <div className="px-8 absolute top-[0px] pt-6 left-0 right-0 rounded-2xl bg-myColors-200">
+            <div className="flex text-white">
+              <h4 className="w-1/12"></h4>
+              <h4 className="w-4/12">Name</h4>
+              <h4 className="w-3/12">Designation</h4>
+              <h4 className="w-2/12"></h4>
+              <h4 className="w-2/12 pl-6">Actions</h4>
+            </div>
+            <div className="h-[1px] w-full bg-white"></div>
+          </div>
+          <div className="pt-8">
+            <UserRow
+              id={teamLeader._id}
+              key={teamLeader._id}
+              number="1"
+              firstname={teamLeader.firstname}
+              lastname={teamLeader.lastname}
+              location={teamLeader.location}
+              designation={teamLeader.designation}
+              date_of_birth={teamLeader.date_of_birth}
+              email={teamLeader.email}
+              gender={teamLeader.gender}
+              _id={teamLeader._id}
+              image={teamLeader.image}
+              role={teamLeader.role}
+            />
+            <div className="flex-col space-y-2 pt-2">
+              {teams?.map(
+                (
+                  {
+                    id,
+                    _id,
+                    firstname,
+                    lastname,
+                    date_of_birth,
+                    gender,
+                    role,
+                    email,
+                    location,
+                    designation,
+                    image,
+                  },
+                  i
+                ) => (
+                  <div key={_id}>
+                    <UserRow
+                      id={_id}
+                      getAll={getAll}
+                      key={_id}
+                      number={i + 2}
+                      firstname={firstname}
+                      lastname={lastname}
+                      location={location}
+                      designation={designation}
+                      date_of_birth={date_of_birth}
+                      email={email}
+                      gender={gender}
+                      _id={_id}
+                      image={image}
+                      role={role}
+                    />
+                  </div>
+                )
+              )}
+            </div>
           </div>
         </div>
       </div>
