@@ -59,7 +59,7 @@ function UserRow({
 
   return (
     <div className="flex items-center text-xs bg-myColors-300 hover:bg-myColors-400 py-1 rounded-xl cursor-pointer">
-      <h4 className="w-1/12 text-center">{number + 1}</h4>
+      <h4 className="w-1/12 text-center">{number}</h4>
       <div className="w-4/12 flex items-center space-x-2">
         <img
           alt=""
