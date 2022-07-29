@@ -10,7 +10,7 @@ import Sidebar from "../components/Sidebar";
 import { requirePageAuth } from "../utils/auth";
 import { useEffect, useState } from "react";
 
-function Schedule() {
+function Tasks() {
   const [team1, setTeam1] = useState(true);
   const [team2, setTeam2] = useState(false);
   return (
@@ -32,8 +32,33 @@ function Schedule() {
       <Sidebar />
       <div className=" bg-myColors-100 h-screen w-7/12 relative">
         <Navbar navBarTitle_1="Schedule" navBarTitle_2="" />
-        <ScheduleContent />
-        
+        {/* <ScheduleContent /> */}
+        <div className="my-2 flex-col absolute space-x-2 left-8 top-32 z-50">
+          <button
+            className={`${
+              team1 ? "bg-myColors-600" : "bg-myColors-500"
+            } text-white p-1 px-4  rounded-md hover:bg-myColors-600`}
+            onClick={() => {
+              setTeam1(true);
+              setTeam2(false);
+            }}
+          >
+            Team Alpha
+          </button>
+          <button
+            className={`${
+              team2 ? "bg-myColors-600" : "bg-myColors-500"
+            } text-white p-1 px-4  rounded-md hover:bg-myColors-600`}
+            onClick={() => {
+              setTeam2(true);
+              setTeam1(false);
+            }}
+          >
+            Team Beta
+          </button>
+        </div>
+        {team1 && <KanbanContent />}
+        {team2 && <KanbanContent2 />}
       </div>
       <RightSidebar />
     </div>
@@ -42,4 +67,4 @@ function Schedule() {
 
 export const getServerSideProps = requirePageAuth;
 
-export default Schedule;
+export default Tasks;

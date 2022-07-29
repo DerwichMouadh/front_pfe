@@ -14,6 +14,7 @@ import {
   ViewGridIcon,
   CogIcon,
 } from "@heroicons/react/outline";
+
 import {
   ArrowCircleDownIcon as ACDI,
   ArrowCircleUpIcon,
@@ -109,6 +110,13 @@ function Sidebar({ token }) {
           </div>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
+          <Link href="/Tasks">
+            <a className="w-full">
+              <SidebarRow Icon={ClipboardCheckIcon} title="Tasks" />
+            </a>
+          </Link>
+        </div>
+        <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
           <Link href="/Schedule">
             <a className="w-full">
               <SidebarRow Icon={CalendarIcon} title="Schedule" />
@@ -126,13 +134,6 @@ function Sidebar({ token }) {
           <Link href="/Overview">
             <a className="w-full">
               <SidebarRow Icon={CogIcon} title="Settings" />
-            </a>
-          </Link>
-        </div>
-        <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-          <Link href="/Overview">
-            <a className="w-full">
-              <SidebarRow Icon={ViewGridIcon} title="Overview 0" />
             </a>
           </Link>
         </div>
