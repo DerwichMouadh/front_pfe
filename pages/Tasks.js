@@ -31,9 +31,9 @@ function Tasks() {
 
       <Sidebar />
       <div className=" bg-myColors-100 h-screen w-7/12 relative">
-        <Navbar navBarTitle_1="Schedule" navBarTitle_2="" />
+        <Navbar navBarTitle_1="Tasks" navBarTitle_2="Team's tasks" />
         {/* <ScheduleContent /> */}
-        <div className="my-2 flex-col absolute space-x-2 left-8 top-32 z-50">
+        <div className="my-2 py-4 w-full px-8 flex-col absolute space-x-2 top-[106px] rounded-2xl z-50 bg-myColors-200">
           <button
             className={`${
               team1 ? "bg-myColors-600" : "bg-myColors-500"

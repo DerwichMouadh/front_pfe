@@ -53,7 +53,7 @@ function ProfileUserContent({ _id }) {
             <div className="flex items-center space-x-2">
               <BriefcaseIcon className="w-4 h-4" />
               <h2 className="font-light">Designation:</h2>
-              <h2 className="text-white">{rh.section.name}</h2>
+              <h2 className="text-white">{rh.designation}</h2>
             </div>
             <div className="flex items-center space-x-2">
               <BriefcaseIcon className="w-4 h-4" />
