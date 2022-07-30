@@ -24,6 +24,21 @@ import Link from "next/link";
 import axios from "axios";
 
 function Sidebar({ token }) {
+  let time = new Date().toLocaleTimeString();
+  let date = new Date().toUTCString().substring(5, 16);
+  const [currTime, setCurrTime] = useState(time);
+  const [currDate, setCurrDate] = useState(date);
+  const updateTime = () => {
+    time = new Date().toLocaleTimeString();
+    setCurrTime(time);
+  };
+  const updateDate = () => {
+    date = new Date().toUTCString().substring(5, 16);
+    setCurrDate(date);
+  };
+  setInterval(updateTime, 1000);
+  setInterval(updateDate, 1000);
+
   const [open, setOpen] = useState(false);
   const [openMore, setOpenMore] = useState(false);
 
@@ -174,13 +189,9 @@ function Sidebar({ token }) {
           </a>
         </div>
       </div>
-      <div className="bg-myColors-300 rounded-2xl p-3 text-white">
-        <p>111</p>
-        <p>111</p>
-        <p>111</p>
-        <p>111</p>
-        <p>111</p>
-        <p>111</p>
+      <div className="bg-myColors-300 rounded-2xl flex-col space-y-4 py-10 p-3 text-white">
+        <div className="text-center">{date}</div>
+        <div className="text-center text-3xl">{time}</div>
       </div>
     </div>
   );
