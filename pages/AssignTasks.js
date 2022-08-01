@@ -1,10 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import RightSidebar from "../components/RightSidebar";
 import Sidebar from "../components/Sidebar";
 import Head from "next/head";
+import Swal from "sweetalert2";
+import route from "next/router";
+import RhService from "../services/RhService";
 
 function AssignTasks() {
+  const [data, setData] = useState({});
+  const onChangeHandler = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append("sections", data.sections);
+    form.append("enddate", data.enddate);
+    form.append("Id", data.Id);
+    form.append("RankId", data.RankId);
+    form.append("Summary", data.Summary);
+
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: "Don't save",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        route.push("/Tasks");
+        RhService.createTask(form)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
+  };
   return (
     <div className="flex">
       <Head>
@@ -40,98 +82,65 @@ function AssignTasks() {
                   </div>
                 </div>
                 <div className="mt-5 md:mt-0 md:col-span-2">
-                  <form action="#" method="POST">
+                  <form action="#" method="POST" onSubmit={onSubmitHandler}>
                     <div className="shadow sm:rounded-2xl sm:overflow-hidden">
                       <div className="px-4 py-5 bg-myColors-100 space-y-6 sm:p-6">
-                        <fieldset>
-                          <legend className="sr-only">By Email</legend>
-                          <div
-                            className="text-base font-medium text-white"
-                            aria-hidden="true"
-                          >
-                            Teams
+                        <div className="grid grid-cols-6 gap-6">
+                          <div className="col-span-6 sm:col-span-6 lg:col-span-6">
+                            <label
+                              htmlFor="teamId"
+                              className="block text-sm font-medium text-white"
+                            >
+                              Team Id
+                            </label>
+                            <input
+                              type="text"
+                              name="sections"
+                              id="sections"
+                              autoComplete="teamId"
+                              onChange={onChangeHandler}
+                              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
+                            />
                           </div>
-                          <div className="mt-4 space-y-4">
-                            <div className="flex items-start">
-                              <div className="flex items-center h-5">
-                                <input
-                                  id="comments"
-                                  name="comments"
-                                  type="checkbox"
-                                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                />
-                              </div>
-                              <div className="ml-3 text-sm">
-                                <label
-                                  htmlFor="comments"
-                                  className="font-medium text-white"
-                                >
-                                  Alpha
-                                </label>
-                                <p className="text-gray-500">
-                                  Assign this tasks to team Alpha.
-                                </p>
-                              </div>
-                            </div>
-                            <div className="flex items-start">
-                              <div className="flex items-center h-5">
-                                <input
-                                  id="candidates"
-                                  name="candidates"
-                                  type="checkbox"
-                                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                />
-                              </div>
-                              <div className="ml-3 text-sm">
-                                <label
-                                  htmlFor="candidates"
-                                  className="font-medium text-white"
-                                >
-                                  Beta
-                                </label>
-                                <p className="text-gray-500">
-                                Assign this tasks to team Beta.
-                                </p>
-                              </div>
-                            </div>
+                          <div className="col-span-6 sm:col-span-6 lg:col-span-6">
+                            <label
+                              htmlFor="deadline"
+                              className="block text-sm font-medium text-white"
+                            >
+                              Deadline
+                            </label>
+                            <input
+                              type="text"
+                              name="enddate"
+                              id="enddate"
+                              autoComplete="deadline"
+                              onChange={onChangeHandler}
+                              placeholder="31-12-2000"
+                              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
+                            />
                           </div>
-                        </fieldset>
+                        </div>
                       </div>
                       <div className="px-4 py-5 bg-myColors-100 sm:p-6">
                         <div className="grid grid-cols-6 gap-6">
-                          <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                          <div className="col-span-6 sm:col-span-6 lg:col-span-3">
                             <label
-                              htmlFor="id"
+                              htmlFor="Id"
                               className="block text-sm font-medium text-white"
                             >
                               Id
                             </label>
                             <input
                               type="text"
-                              name="id"
-                              id="id"
-                              autoComplete="id"
+                              name="Id"
+                              id="Id"
+                              autoComplete="Id"
+                              onChange={onChangeHandler}
                               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
                             />
                           </div>
 
-                          <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                            <label
-                              htmlFor="title"
-                              className="block text-sm font-medium text-white"
-                            >
-                              Title
-                            </label>
-                            <input
-                              type="text"
-                              name="title"
-                              id="title"
-                              autoComplete="title"
-                              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
-                            />
-                          </div>
-
-                          <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                          <div className="col-span-6 sm:col-span-3 lg:col-span-3">
                             <label
                               htmlFor="rankId"
                               className="block text-sm font-medium text-white"
@@ -139,10 +148,11 @@ function AssignTasks() {
                               RankId
                             </label>
                             <input
-                              type="text"
-                              name="rankId"
-                              id="rankId"
+                              type="number"
+                              name="RankId"
+                              id="RankId"
                               autoComplete="rankId"
+                              onChange={onChangeHandler}
                               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
                             />
                           </div>
@@ -159,8 +169,9 @@ function AssignTasks() {
                           </label>
                           <div className="mt-1">
                             <textarea
-                              id="about"
-                              name="about"
+                              id="Summary"
+                              name="Summary"
+                              onChange={onChangeHandler}
                               rows={3}
                               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md bg-myColors-200"
                               placeholder="This task is about..."
