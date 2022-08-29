@@ -31,7 +31,7 @@ function KanbanContent({ _id }) {
   const getAll = () => {
     const config = {
       method: "GET",
-      url: `http://localhost:5000/sections/62c45e77ceca396d41d99f0b`,
+      url: `http://localhost:5000/tasks/section/62c45e77ceca396d41d99f0b`,
       // headers: {
       //   Authorization: `Bearer ${token}`,
       // },
@@ -39,7 +39,7 @@ function KanbanContent({ _id }) {
     axios(config)
       .then(({ status, data }) => {
         if (status === 200) {
-          setTasks(data.data.tasks);
+          setTasks(data.data);
         }
       })
       .catch((err) => {

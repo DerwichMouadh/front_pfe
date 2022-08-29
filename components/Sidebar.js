@@ -191,7 +191,7 @@ function Sidebar({ token }) {
       </div>
       <div className="bg-myColors-300 rounded-2xl flex-col space-y-4 py-10 p-3 text-white">
         <div className="text-center">{date}</div>
-        <div className="text-center text-3xl">{time}</div>
+        {/* <div className="text-center text-3xl">{time}</div> */}
       </div>
     </div>
   );

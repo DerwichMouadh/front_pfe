@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import RightSidebar from "../components/RightSidebar";
 import Sidebar from "../components/Sidebar";
@@ -6,47 +6,48 @@ import Head from "next/head";
 import Swal from "sweetalert2";
 import route from "next/router";
 import RhService from "../services/RhService";
-
+import { useRouter } from "next/router";
+import axios from "axios";
 function AssignTasks() {
-  const [data, setData] = useState({});
-  const onChangeHandler = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    const form = new FormData();
-    form.append("sections", data.sections);
-    form.append("enddate", data.enddate);
-    form.append("Id", data.Id);
-    form.append("RankId", data.RankId);
-    form.append("Summary", data.Summary);
+  const router = useRouter();
+  const input1 = useRef();
+  const input2 = useRef();
+  const input3 = useRef();
+  const input4 = useRef();
+  const input5 = useRef();
 
-    Swal.fire({
-      title: "Do you want to save the changes?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: "Don't save",
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        route.push("/Tasks");
-        RhService.createTask(form)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        Swal.fire("Saved!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
-      }
+  const [task, setTask] = useState({
+    section: "",
+    enddate: "",
+    Id: "",
+    RankId: "",
+    Summary: "",
+  });
+  function handleSubmit(e) {
+    e.preventDefault();
+    const config = {
+      method: "post",
+      url: "http://localhost:5000/tasks/create",
+      headers: {},
+      data: task,
+    };
+    axios(config)
+      .then((response) => {
+        router.push("/Tasks");
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log("error");
+      });
+  }
+
+  function handleInputChange(e, setTask) {
+    const fieldName = e.target.name;
+    setTask((prevTask) => {
+      return { ...prevTask, [fieldName]: e.target.value };
     });
-  };
+  }
+
   return (
     <div className="flex">
       <Head>
@@ -82,7 +83,7 @@ function AssignTasks() {
                   </div>
                 </div>
                 <div className="mt-5 md:mt-0 md:col-span-2">
-                  <form action="#" method="POST" onSubmit={onSubmitHandler}>
+                  <form action="#" method="POST" onSubmit={handleSubmit}>
                     <div className="shadow sm:rounded-2xl sm:overflow-hidden">
                       <div className="px-4 py-5 bg-myColors-100 space-y-6 sm:p-6">
                         <div className="grid grid-cols-6 gap-6">
@@ -95,10 +96,13 @@ function AssignTasks() {
                             </label>
                             <input
                               type="text"
-                              name="sections"
-                              id="sections"
+                              ref={input1}
+                              name="section"
+                              id="section"
+                              onChange={(e) => {
+                                handleInputChange(e, setTask);
+                              }}
                               autoComplete="teamId"
-                              onChange={onChangeHandler}
                               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
                             />
                           </div>
@@ -111,10 +115,13 @@ function AssignTasks() {
                             </label>
                             <input
                               type="text"
+                              ref={input2}
                               name="enddate"
                               id="enddate"
+                              onChange={(e) => {
+                                handleInputChange(e, setTask);
+                              }}
                               autoComplete="deadline"
-                              onChange={onChangeHandler}
                               placeholder="31-12-2000"
                               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
                             />
@@ -132,10 +139,13 @@ function AssignTasks() {
                             </label>
                             <input
                               type="text"
+                              ref={input3}
                               name="Id"
                               id="Id"
+                              onChange={(e) => {
+                                handleInputChange(e, setTask);
+                              }}
                               autoComplete="Id"
-                              onChange={onChangeHandler}
                               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
                             />
                           </div>
@@ -149,10 +159,13 @@ function AssignTasks() {
                             </label>
                             <input
                               type="number"
+                              ref={input4}
                               name="RankId"
                               id="RankId"
+                              onChange={(e) => {
+                                handleInputChange(e, setTask);
+                              }}
                               autoComplete="rankId"
-                              onChange={onChangeHandler}
                               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
                             />
                           </div>
@@ -169,9 +182,12 @@ function AssignTasks() {
                           </label>
                           <div className="mt-1">
                             <textarea
-                              id="Summary"
+                              ref={input5}
                               name="Summary"
-                              onChange={onChangeHandler}
+                              id="Summary"
+                              onChange={(e) => {
+                                handleInputChange(e, setTask);
+                              }}
                               rows={3}
                               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md bg-myColors-200"
                               placeholder="This task is about..."
