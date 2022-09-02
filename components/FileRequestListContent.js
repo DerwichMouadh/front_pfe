@@ -16,7 +16,6 @@ function FileRequestListContent({ token }) {
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(0);
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
-
   const PAGE_SIZE = 3;
 
   const [files, setFiles] = useState([]);
