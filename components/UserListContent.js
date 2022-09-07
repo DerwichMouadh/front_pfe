@@ -61,6 +61,7 @@ function UserListContent({ token }) {
               lastname,
               date_of_birth,
               gender,
+              remote,
               status,
               role,
               image,
@@ -83,6 +84,7 @@ function UserListContent({ token }) {
               date_of_birth={date_of_birth}
               email={email}
               gender={gender}
+              remote={remote}
               status={status}
               _id={_id}
               image={image}

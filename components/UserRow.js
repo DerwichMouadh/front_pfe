@@ -7,6 +7,8 @@ import {
   CheckCircleIcon,
   LockClosedIcon,
   LockOpenIcon,
+  ArrowRightIcon,
+  ArrowLeftIcon,
 } from "@heroicons/react/solid";
 import RhsServices from "../services/RhService";
 import Swal from "sweetalert2";
@@ -21,6 +23,7 @@ function UserRow({
   lastname,
   date_of_birth,
   gender,
+  remote,
   role,
   email,
   location,
@@ -119,10 +122,37 @@ function UserRow({
     });
   };
 
+  const updateRemote = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Switch it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const config = {
+          method: "PUT",
+          url: `http://localhost:5000/users/user/${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          data: { remote: !remote },
+        };
+        axios(config).then((res) => {
+          getAll();
+        });
+        Swal.fire("Switching!", "", "success");
+      }
+    });
+  };
+
   return (
     <div className="flex items-center text-xs bg-myColors-300 hover:bg-myColors-400 py-1 rounded-xl ">
       <h4 className="w-1/12 text-center">{number}</h4>
-      <div className="w-3/12 flex items-center space-x-2">
+      <div className="w-4/12 flex items-center space-x-2">
         <img
           alt=""
           src={"http://localhost:5000/getImage/" + image}
@@ -135,15 +165,29 @@ function UserRow({
           {firstname} {lastname}
         </h4>
       </div>
-      <h4 className="w-3/12">{designation}</h4>
-      <div className="w-3/12 flex items-center space-x-2">
+      <div className="flex space-x-3 w-3/12 items-center">
         <div className="">
-          {firstname === "Admin" && <h4 className="">-</h4>}
+          <h4 className="">
+            {remote === false && "Remote"}
+            {remote === true && "Presential"}
+          </h4>
+        </div>
+        <div
+          className=" opacity-70 hover:opacity-100 bg-teal-500 flex-col rounded-full w-6 h-6 cursor-pointer"
+          onClick={(e) => updateRemote(id)}
+        >
+          <ArrowRightIcon className="h-4 w-4  text-sky-900 -mb-2 mx-auto" />
+          <ArrowLeftIcon className="h-4 w-4 text-sky-900 mx-auto" />
+        </div>
+      </div>
+      <div className="w-2/12 flex items-center space-x-3">
+        <div className="">
+          {firstname === "Admin" && <h4 className=""></h4>}
           {firstname !== "Admin" && <h4 className="">{status}</h4>}
         </div>
         {firstname === "Admin" && <></>}
         {firstname !== "Admin" && (
-          <h4 className="">
+          <div className="">
             <div className="relative group">
               {status === "Pending" && (
                 <div onClick={(e) => updateStatusToApproved(id)}>
@@ -162,7 +206,7 @@ function UserRow({
                 </div>
               )}
             </div>
-          </h4>
+          </div>
         )}
       </div>
       <div className="w-2/12 flex">
