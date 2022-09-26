@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import bg from "../images/bg.jpg";
+import logo from "../images/logo_1.png";
 import axios from "axios";
 import { LockClosedIcon, LockOpenIcon, UserIcon } from "@heroicons/react/solid";
 import Link from "next/link";
@@ -48,17 +49,20 @@ function Login() {
       <div className="backdrop-blur-sm bg-white/10 text-white z-50 rounded-3xl shadow-[rgba(0,0,0,0.8)] shadow-xl">
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8">
-            <div>
-              <img
-                className="mx-auto h-12 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt="Workflow"
+            <div className="text-center">
+              <Image
+                alt="logo"
+                src={logo}
+                priority
+                width="150"
+                height="150"
+                className=" object-contain"
               />
               <h2 className="mt-6 text-center text-3xl font-extrabold text-white font-fancy">
-                Sign in to your plateforme
+                Sign in to your Dashboard Admin
               </h2>
               <p className="mt-2 text-center text-sm font-medium text-myColors-600">
-                Dashboard Admin
+                &quot;PRESENCE&quot;
               </p>
             </div>
             <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -98,7 +102,7 @@ function Login() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
+              {/* <div className="flex items-center justify-end">
                 <div className="text-sm">
                   <a
                     href="#"
@@ -116,9 +120,9 @@ function Login() {
                     </a>
                   </Link>
                 </div>
-              </div>
+              </div> */}
 
-              <div>
+              <div className="">
                 <button
                   type="submit"
                   className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

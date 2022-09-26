@@ -16,7 +16,7 @@ function FileRequestListContent({ token }) {
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(0);
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
-  const PAGE_SIZE = 3;
+  const PAGE_SIZE = 7;
 
   const [files, setFiles] = useState([]);
   useEffect(() => {
@@ -115,8 +115,8 @@ function FileRequestListContent({ token }) {
 
         <div className="pt-6 mb-4 rounded-2xl bg-myColors-200">
           <div className="flex text-white text-sm">
-            <h4 className="w-2/12 pl-6">Name</h4>
-            <h4 className="w-3/12">Wording</h4>
+            <h4 className="w-3/12 pl-6">Name</h4>
+            <h4 className="w-2/12">Wording</h4>
             <h4 className="w-2/12">Status</h4>
             <h4 className="w-3/12">Date</h4>
             <h4 className="w-1/12">Actions</h4>
@@ -135,60 +135,60 @@ function FileRequestListContent({ token }) {
                   getAll={getAll}
                   key={_id}
                   number={i}
-                  name={name}
+                  user={user}
                   wording={wording}
                   _id={_id}
                   status={status}
-                  date={createdAt}
+                  createdAt={createdAt}
                   token={token}
                 />
               ))}
           {inprogress &&
             files
               ?.filter((file) => file.status === "In Progress")
-              .map(({ _id, name, wording, status, createdAt }, i) => (
+              .map(({ _id, user, wording, status, createdAt }, i) => (
                 <FileRequestRow
                   id={_id}
                   getAll={getAll}
                   key={_id}
                   number={i}
-                  name={name}
+                  user={user}
                   wording={wording}
                   _id={_id}
                   status={status}
-                  date={createdAt}
+                  createdAt={createdAt}
                   token={token}
                 />
               ))}
           {refused &&
             files
               ?.filter((file) => file.status === "Refused")
-              .map(({ _id, name, wording, status, createdAt }, i) => (
+              .map(({ _id, user, wording, status, createdAt }, i) => (
                 <FileRequestRow
                   id={_id}
                   getAll={getAll}
                   key={_id}
                   number={i}
-                  name={name}
+                  user={user}
                   wording={wording}
                   _id={_id}
                   status={status}
-                  date={createdAt}
+                  createdAt={createdAt}
                   token={token}
                 />
               ))}
           {all &&
-            files.map(({ _id, name, wording, status, createdAt }, i) => (
+            files.map(({ _id, user, wording, status, createdAt }, i) => (
               <FileRequestRow
                 id={_id}
                 getAll={getAll}
                 key={_id}
                 number={i}
-                name={name}
+                user={user}
                 wording={wording}
                 _id={_id}
                 status={status}
-                date={createdAt}
+                createdAt={createdAt}
                 token={token}
               />
             ))}

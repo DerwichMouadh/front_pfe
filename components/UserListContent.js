@@ -7,13 +7,12 @@ import Pagination from "./Pagination";
 import RhsServices from "../services/RhService";
 import axios from "axios";
 
-
 function UserListContent({ token }) {
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(0);
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
-  const PAGE_SIZE = 5;
+  const PAGE_SIZE = 8;
 
   const [rhs, setRhs] = useState([]);
   useEffect(() => {
@@ -39,9 +38,7 @@ function UserListContent({ token }) {
         console.error("err", err);
       });
   };
- 
 
-  
   const goToPrevious = () => {
     setPageNumber(Math.max(0, pageNumber - 1));
   };
@@ -67,8 +64,7 @@ function UserListContent({ token }) {
               image,
               email,
               location,
-              designation,
-              ...section
+              designation
             },
             i
           ) => (
@@ -76,7 +72,6 @@ function UserListContent({ token }) {
               id={_id}
               getAll={getAll}
               key={_id}
-              number={i}
               firstname={firstname}
               lastname={lastname}
               location={location}
@@ -90,7 +85,6 @@ function UserListContent({ token }) {
               image={image}
               role={role}
               token={token}
-              section={section}
             />
           )
         )}

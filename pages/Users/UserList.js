@@ -26,10 +26,9 @@ function UserList({ token }) {
         <UserListContent token={token} />
         <div className="px-8 absolute top-[114px] pt-6 left-0 right-0 rounded-2xl bg-myColors-200">
           <div className="flex text-white">
-            <h4 className="w-1/12"></h4>
-            <h4 className="w-4/12">Name</h4>
+            <h4 className="w-4/12 pl-6">Name</h4>
             <h4 className="w-3/12">Working type</h4>
-            <h4 className="w-2/12">Status</h4>
+            <h4 className="w-3/12">Status</h4>
             <h4 className="w-2/12 pl-6">Actions</h4>
           </div>
           <div className="h-[1px] w-full bg-white"></div>

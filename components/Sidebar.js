@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   ArrowCircleRightIcon,
   ArrowCircleDownIcon,
@@ -13,6 +14,7 @@ import {
   UserGroupIcon,
   ViewGridIcon,
   CogIcon,
+  SpeakerphoneIcon,
 } from "@heroicons/react/outline";
 
 import {
@@ -21,6 +23,7 @@ import {
 } from "@heroicons/react/outline";
 import SidebarRow from "./SidebarRow";
 import Link from "next/link";
+import logo from "../images/logo_1.png";
 import axios from "axios";
 
 function Sidebar({ token }) {
@@ -73,9 +76,16 @@ function Sidebar({ token }) {
 
   return (
     <div className="bg-myColors-100 p-4 pb-8 text-sm font-medium w-2/12 min-w-[200px] flex flex-col space-y-3 h-screen">
-      <div className="px-4 pt-4 pb-10">
+      <div className="pl-6">
         <Link href="/Overview">
-          <a className="text-2xl font-bold text-white font-fancy">DashAdmin</a>
+          <Image
+            alt="logo"
+            src={logo}
+            priority
+            width="80"
+            height="80"
+            className=" object-contain cursor-pointer"
+          />
         </Link>
       </div>
       <div className="flex-grow scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
@@ -146,9 +156,9 @@ function Sidebar({ token }) {
           </Link>
         </div>
         <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/Overview">
+          <Link href="/Announcements">
             <a className="w-full">
-              <SidebarRow Icon={CogIcon} title="Settings" />
+              <SidebarRow Icon={SpeakerphoneIcon} title="Announcements" />
             </a>
           </Link>
         </div>
