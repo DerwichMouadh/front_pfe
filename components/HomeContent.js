@@ -54,7 +54,7 @@ function HomeContent() {
   const getallUsers = () => {
     const config = {
       method: "GET",
-      url: `http://localhost:5000/users/`,
+      url: `http://localhost:5000/users/all`,
       // headers: {
       //   Authorization: `Bearer ${token}`,
       // },
@@ -135,13 +135,13 @@ function HomeContent() {
   let totalsup44per = 100 * totalsup44 / (total1825 + total2635 + total3544 + totalsup44);
 
   return (
-    <div className="bg-myColors-200 rounded-2xl grid grid-cols-6 gap-4 w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
+    <div className="bg-myColors-200 rounded-2xl grid grid-cols-9 gap-4 w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
       
-      <div className="bg-myColors-700 p-4 rounded-2xl col-span-4">
-        <h1 className="text-center text-lg pb-4">Bar Chart Diagram</h1>
+      <div className="bg-myColors-700 p-4 rounded-2xl col-span-6">
+        <h1 className="text-center text-lg pb-4">Presential / Online Diagram</h1>
         <BarChart2 totalFemale={totalFemale} totalMale={totalMale} />
       </div>
-      <div className="bg-myColors-700 p-4 rounded-2xl col-span-2">
+      <div className="bg-myColors-700 p-4 rounded-2xl col-span-3">
         <h1 className="text-center text-lg pb-4">User persentage by age</h1>
         <DoughnutChart
           total1825={total1825}
@@ -168,7 +168,7 @@ function HomeContent() {
           </div>
         </div>
       </div>
-      <div className="bg-myColors-700 p-4 rounded-2xl col-span-2">
+      <div className="bg-myColors-700 p-4 rounded-2xl col-span-3">
         <h1 className="text-center text-lg pb-4">User persentage by gender</h1>
         <PieChart totalFemale={totalFemale} totalMale={totalMale} />
         <div className="flex justify-evenly">
@@ -182,19 +182,6 @@ function HomeContent() {
           </div>
         </div>
       </div>
-      <div className="bg-myColors-700 p-4 rounded-2xl col-span-4">
-        <h1 className="text-center text-lg pb-4">Line Chart Diagram</h1>
-        <LineChart
-        />
-      </div>
-      <div className="bg-myColors-700 p-4 rounded-2xl col-span-4">
-        <h1 className="text-center text-lg pb-4">Radar Chart Diagram</h1>
-        <RadarChart
-          numInProgress={numInProgress}
-          numReady={numReady}
-          numRefused={numRefused}
-        />
-      </div>
       <div className="bg-myColors-700 p-4 rounded-2xl col-span-2">
         <h1 className="text-center text-lg pb-4">Bar Chart Diagram</h1>
         {/* <BarChart /> */}
@@ -204,6 +191,29 @@ function HomeContent() {
           numRefused={numRefused}
         />
       </div>
+      <div className="bg-myColors-700 p-4 rounded-2xl col-span-4">
+        <h1 className="text-center text-lg pb-4">Presential / Online Diagram</h1>
+        <LineChart
+        />
+      </div>
+      <div className="bg-myColors-700 p-4 rounded-2xl col-span-6">
+        <h1 className="text-center text-lg pb-4">Designation</h1>
+        <RadarChart
+          numInProgress={numInProgress}
+          numReady={numReady}
+          numRefused={numRefused}
+        />
+      </div>
+      <div className="bg-myColors-700 p-4 rounded-2xl col-span-3">
+        <h1 className="text-center text-lg pb-4">Bar Chart Diagram</h1>
+        {/* <BarChart /> */}
+        <BarChart
+          numInProgress={numInProgress}
+          numReady={numReady}
+          numRefused={numRefused}
+        />
+      </div>
+      
     </div>
   );
 }

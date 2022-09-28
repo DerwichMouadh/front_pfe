@@ -151,7 +151,7 @@ function UserRow({
 
   return (
     <div className="flex items-center text-xs bg-myColors-300 hover:bg-myColors-400 py-1 rounded-xl ">
-      <div className="w-4/12 flex items-center space-x-2 pl-6">
+      <div className="w-4/12 flex items-center space-x-2 pl-6 py-1">
         {/* <img
           alt=""
           src={"http://localhost:5000/getImage/" + image}

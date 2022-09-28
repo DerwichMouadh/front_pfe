@@ -15,6 +15,7 @@ import {
   ViewGridIcon,
   CogIcon,
   SpeakerphoneIcon,
+  DocumentTextIcon
 } from "@heroicons/react/outline";
 
 import {
@@ -127,7 +128,7 @@ function Sidebar({ token }) {
         <div className="flex pr-5 items-center hover:rounded-2xl mb-1 group hover:bg-myColors-300">
           <Link href="/FileRequest/FileRequestList">
             <a className="w-full relative">
-              <SidebarRow Icon={ClipboardIcon} title="Files" />
+              <SidebarRow Icon={DocumentTextIcon} title="Files" />
             </a>
           </Link>
           <div className="text-center text-xs font-bold bg-myColors-600 rounded-full text-myColors-300 w-[16px] h-[16px]">

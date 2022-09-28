@@ -66,7 +66,7 @@ function AssignTasks() {
 
       <Sidebar />
       <div className=" bg-myColors-100 h-screen w-7/12 relative">
-        <Navbar navBarTitle_1="Tasks" navBarTitle_2="Assign Tasks" />
+        <Navbar navBarTitle_1="Tasks" navBarTitle_2="Assign Task" />
         <div className="bg-myColors-200 rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
           <>
             <div>
@@ -106,36 +106,16 @@ function AssignTasks() {
                               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
                             />
                           </div>
-                          <div className="col-span-6 sm:col-span-6 lg:col-span-6">
-                            <label
-                              htmlFor="deadline"
-                              className="block text-sm font-medium text-white"
-                            >
-                              Deadline
-                            </label>
-                            <input
-                              type="text"
-                              ref={input2}
-                              name="enddate"
-                              id="enddate"
-                              onChange={(e) => {
-                                handleInputChange(e, setTask);
-                              }}
-                              autoComplete="deadline"
-                              placeholder="31-12-2000"
-                              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
-                            />
-                          </div>
                         </div>
                       </div>
                       <div className="px-4 py-5 bg-myColors-100 sm:p-6">
                         <div className="grid grid-cols-6 gap-6">
-                          <div className="col-span-6 sm:col-span-6 lg:col-span-3">
+                          <div className="col-span-6 sm:col-span-6 lg:col-span-6">
                             <label
                               htmlFor="Id"
                               className="block text-sm font-medium text-white"
                             >
-                              Id
+                              Title
                             </label>
                             <input
                               type="text"
@@ -150,7 +130,7 @@ function AssignTasks() {
                             />
                           </div>
 
-                          <div className="col-span-6 sm:col-span-3 lg:col-span-3">
+                          {/* <div className="col-span-6 sm:col-span-3 lg:col-span-3">
                             <label
                               htmlFor="rankId"
                               className="block text-sm font-medium text-white"
@@ -168,7 +148,7 @@ function AssignTasks() {
                               autoComplete="rankId"
                               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-myColors-200"
                             />
-                          </div>
+                          </div> */}
                         </div>
                       </div>
 
@@ -188,7 +168,7 @@ function AssignTasks() {
                               onChange={(e) => {
                                 handleInputChange(e, setTask);
                               }}
-                              rows={3}
+                              rows={7}
                               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md bg-myColors-200"
                               placeholder="This task is about..."
                               defaultValue={""}
@@ -204,7 +184,7 @@ function AssignTasks() {
                           type="submit"
                           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                          Save
+                          Assign task
                         </button>
                       </div>
                     </div>

@@ -10,6 +10,7 @@ import {
   LoginIcon,
   CalendarIcon,
   AtSymbolIcon,
+  DocumentTextIcon,
 } from "@heroicons/react/solid";
 import {
   CheckCircleIcon,
@@ -27,7 +28,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
-import img from "../images/SJ.jpg"
+import img from "../images/SJ.jpg";
 
 function ProfileUserContent({ _id }) {
   // let convDate2 = new Date(createdAt);
@@ -90,7 +91,7 @@ function ProfileUserContent({ _id }) {
   let age = parseInt(currentYear) - parseInt(userYear);
 
   return (
-    <div className="bg-myColors-200 flex-col space-y-4 rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden text-sm">
+    <div className="bg-myColors-200 flex-col space-y-2 rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden text-sm">
       {/* <div>id: {_id}</div>
       <div>{rh.firstname}</div> */}
 
@@ -114,8 +115,10 @@ function ProfileUserContent({ _id }) {
               </div>
             </div>
             <div className="flex-col">
-              <h2 className="text-myColors-600 font-light">Employee ID:</h2>
-              <h2>#{_id}</h2>
+              <h2 className="text-myColors-600 font-light text-sm">
+                Employee ID:
+              </h2>
+              <h2 className="text-sm">#{_id}</h2>
             </div>
           </div>
         </div>
@@ -135,7 +138,7 @@ function ProfileUserContent({ _id }) {
           </div>
         </div> */}
         <div className="flex-col space-y-2">
-          <Link href="/">
+          <Link href={"/Users/AddToTeam/" + _id} key={_id}>
             <div className=" rounded-xl px-4 bg-myColors-400 text-green-300 hover:text-myColors-400 hover:bg-myColors-600 flex space-x-2 items-center p-2 cursor-pointer">
               <UserGroupIcon className="h-6 w-6" />
               <a>Add to Team</a>
@@ -144,7 +147,7 @@ function ProfileUserContent({ _id }) {
           <Link href={"/Users/UpdateUser/" + _id} key={_id}>
             <div className=" rounded-xl px-4 bg-myColors-400 text-green-300 hover:text-myColors-400 hover:bg-myColors-600 flex space-x-2 items-center p-2 cursor-pointer">
               <PencilAltIcon className="h-6 w-6" />
-              <a>Edit Profile</a>
+              <a>Update User</a>
             </div>
           </Link>
         </div>
@@ -160,7 +163,7 @@ function ProfileUserContent({ _id }) {
       </div> */}
 
       {/* Content */}
-      <div className="grid grid-col-3 grid-flow-col gap-4">
+      <div className="grid grid-col-3 grid-flow-col gap-2">
         <div className="row-span-3 bg-myColors-700 p-6 rounded-xl">
           <h2 className="font-fancy mb-4">Personal Information</h2>
           <div className="flex-col space-y-2">
@@ -179,7 +182,7 @@ function ProfileUserContent({ _id }) {
             <ProfileUserRow
               Icon={PhoneIcon}
               title="Phone Number"
-              info="+21609090909"
+              info="716-352-7105"
             />
             <ProfileUserRow
               Icon={AtSymbolIcon}
@@ -207,7 +210,7 @@ function ProfileUserContent({ _id }) {
               info={new Date(rh.createdAt).toUTCString().substring(5, 16)}
             />
             <ProfileUserRow
-              Icon={BriefcaseIcon}
+              Icon={DocumentTextIcon}
               title="Contrat Type"
               info="CDD"
             />

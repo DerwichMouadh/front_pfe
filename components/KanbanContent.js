@@ -412,7 +412,7 @@ function KanbanContent({ team }) {
       <KanbanComponent
         id="kanban"
         keyField="Status"
-        dataSource={tasks}
+        dataSource={kanbanData}
         cardSettings={{ contentField: "Summary", headerField: "Id" }}
       >
         <ColumnsDirective>

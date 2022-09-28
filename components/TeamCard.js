@@ -13,11 +13,11 @@ function TeamCard({ id, _id, name, employees, teamLeader, tasks }) {
   return (
     <div className="relative bg-myColors-700 rounded-xl flex items-center justify-center space-x-6 hover:bg-green-500">
       <div>
-        <UserGroupIcon className="h-10 w-10 text-green-500 bg-green-200 p-2 rounded-xl" />
+        <UserGroupIcon className="h-14 w-14 text-green-500 bg-green-200 p-2 rounded-xl" />
       </div>
       <div className="flex-col space-y-1">
-        <p className=" text-xs">Team&apos;s Name</p>
-        <p className="  text-lg">{name}</p>
+        <p className=" text-xs">Team</p>
+        <p className="  text-2xl font-fancy">{name}</p>
       </div>
       <DotsVerticalIcon
         onClick={() => setOpen1(!open1)}

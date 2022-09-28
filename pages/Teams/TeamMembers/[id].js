@@ -8,6 +8,18 @@ import RightSidebar from "../../../components/RightSidebar";
 import RhService from "../../../services/RhService";
 import axios from "axios";
 import UserRow from "../../../components/UserRow";
+import {
+  PencilAltIcon,
+  TrashIcon,
+  ExternalLinkIcon,
+  CheckCircleIcon,
+  LockClosedIcon,
+  LockOpenIcon,
+  ArrowRightIcon,
+  ArrowLeftIcon,
+  UserIcon,
+} from "@heroicons/react/solid";
+import Link from "next/link";
 
 function TeamMembers({ _id }) {
   const router = useRouter();
@@ -58,30 +70,13 @@ function TeamMembers({ _id }) {
         <div className="bg-myColors-200 rounded-2xl w-7/12 fixed top-[82px] my-8 bottom-0 p-8 text-white scrollbar scrollbar-thumb-hidden scrollbar-track-hidden">
           <div className="px-8 absolute top-[0px] pt-6 left-0 right-0 rounded-2xl bg-myColors-200">
             <div className="flex text-white">
-              <h4 className="w-1/12"></h4>
-              <h4 className="w-4/12">Name</h4>
-              <h4 className="w-3/12">Designation</h4>
-              <h4 className="w-2/12"></h4>
+              <h4 className="w-5/12 pl-6">Name</h4>
+              <h4 className="w-5/12">Designation</h4>
               <h4 className="w-2/12 pl-6">Actions</h4>
             </div>
             <div className="h-[1px] w-full bg-white"></div>
           </div>
           <div className="pt-8">
-            <UserRow
-              id={teamLeader._id}
-              key={teamLeader._id}
-              number="1"
-              firstname={teamLeader.firstname}
-              lastname={teamLeader.lastname}
-              location={teamLeader.location}
-              designation={teamLeader.designation}
-              date_of_birth={teamLeader.date_of_birth}
-              email={teamLeader.email}
-              gender={teamLeader.gender}
-              _id={teamLeader._id}
-              image={teamLeader.image}
-              role={teamLeader.role}
-            />
             <div className="flex-col space-y-2 pt-2">
               {teams?.map(
                 (
@@ -101,22 +96,51 @@ function TeamMembers({ _id }) {
                   i
                 ) => (
                   <div key={_id}>
-                    <UserRow
-                      id={_id}
-                      getAll={getAll}
+                    <div
+                      className="flex items-center text-xs bg-myColors-300 hover:bg-myColors-400 py-1 rounded-xl"
                       key={_id}
-                      number={i + 2}
-                      firstname={firstname}
-                      lastname={lastname}
-                      location={location}
-                      designation={designation}
-                      date_of_birth={date_of_birth}
-                      email={email}
-                      gender={gender}
-                      _id={_id}
-                      image={image}
-                      role={role}
-                    />
+                    >
+                      <div className="w-5/12 flex items-center space-x-2 pl-6">
+                        <UserIcon className="h-7 w-7 rounded-full bg-green-500 p-1" />
+                        <h4 className="">
+                          {firstname} {lastname}
+                        </h4>
+                      </div>
+                      <div className="w-5/12 flex items-center space-x-2">
+                        <h4 className="">{designation}</h4>
+                      </div>
+                      <div className="w-2/12 flex">
+                        <Link href={"/Users/ProfileUser/" + _id} key={_id}>
+                          <div className="relative group">
+                            <a>
+                              <ExternalLinkIcon className="h-9 w-9 hover:bg-myColors-200 text-yellow-500 p-2 rounded-xl cursor-pointer" />
+                            </a>
+                            <p className="hidden text-xs z-50 mt-2 group-hover:block absolute bg-white text-myColors-100 px-2 rounded">
+                              Profile!
+                            </p>
+                          </div>
+                        </Link>
+                        <Link href={"/Users/UpdateUser/" + _id} key={_id}>
+                          <div className="relative group">
+                            <a>
+                              <PencilAltIcon className="h-9 w-9 hover:bg-myColors-200 text-blue-500 p-2 rounded-xl cursor-pointer" />
+                            </a>
+                            <p className="hidden text-xs z-50 mt-2 group-hover:block absolute bg-white text-myColors-100 px-2 rounded">
+                              Update!
+                            </p>
+                          </div>
+                        </Link>
+                        <div className="relative group">
+                          <TrashIcon
+                            className="h-9 w-9 hover:bg-myColors-200 text-red-500 p-2 rounded-xl cursor-pointer"
+                            onClick={(e) => deleteRh(id)}
+                          />
+                          <p className="hidden text-xs z-50 mt-2 group-hover:block absolute bg-white text-myColors-100 px-2 rounded">
+                            Delete!
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )
               )}

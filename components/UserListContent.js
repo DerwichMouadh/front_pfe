@@ -64,7 +64,7 @@ function UserListContent({ token }) {
               image,
               email,
               location,
-              designation
+              designation,
             },
             i
           ) => (

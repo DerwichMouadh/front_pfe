@@ -50,7 +50,7 @@ function FileRequestRow({ id, user, wording, status, createdAt, token, getAll, n
     <div className="flex h-11 items-center text-xs bg-myColors-300 hover:bg-myColors-400 py-1 rounded-xl cursor-pointer">
       <h4 className="w-3/12 pl-6">{user.firstname} {user.lastname}</h4>
       <h4 className="w-2/12">{wording}</h4>
-      <h4 className="w-2/12">{status}</h4>
+      <h4 className="w-2/12 pl-6">{status}</h4>
       <h4 className="w-3/12">{convDate.toUTCString().substring(0, 22)}</h4>
       <div className="w-1/12 flex space-x-3">
         {status === "In Progress" && <CheckCircleIcon className="h-6 w-6 opacity-75 hover:opacity-100 bg-green-500 text-myColors-300 p-1 rounded-lg" onClick={(e) => updateFileReady(id)} />}

@@ -117,7 +117,7 @@ function FileRequestListContent({ token }) {
           <div className="flex text-white text-sm">
             <h4 className="w-3/12 pl-6">Name</h4>
             <h4 className="w-2/12">Wording</h4>
-            <h4 className="w-2/12">Status</h4>
+            <h4 className="w-2/12 pl-6">Status</h4>
             <h4 className="w-3/12">Date</h4>
             <h4 className="w-1/12">Actions</h4>
             <h4 className="w-1/12 text-center">Notif.</h4>
