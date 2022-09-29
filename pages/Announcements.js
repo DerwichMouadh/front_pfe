@@ -28,7 +28,7 @@ function Announcements() {
       </Head>
       <Sidebar />
       <div className="bg-myColors-100 h-screen w-7/12 relative">
-        <Navbar navBarTitle_1="Users" navBarTitle_2="User List" />
+        <Navbar navBarTitle_1="Announcements" navBarTitle_2="Announcements List" />
         <div className="my-2 py-4 w-full px-8 flex-col absolute space-x-2 top-[106px] rounded-2xl z-50 bg-myColors-200">
         <h1 className="text-center text-lg py-6 text-white">Announcements</h1>
         </div>

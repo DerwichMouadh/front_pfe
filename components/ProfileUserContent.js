@@ -62,7 +62,7 @@ function ProfileUserContent({ _id }) {
   const getAll = () => {
     const config = {
       method: "GET",
-      url: `http://localhost:5000/filerequests`,
+      url: `http://localhost:5000/filerequests/all`,
       // headers: {
       //   Authorization: `Bearer ${token}`,
       // },
@@ -71,8 +71,6 @@ function ProfileUserContent({ _id }) {
       .then(({ status, data }) => {
         if (status === 200) {
           setFiles(data.data);
-          setNumberOfPages(data.totalPages);
-          setTotalNumberOfPages(data.total);
         }
       })
       .catch((err) => {

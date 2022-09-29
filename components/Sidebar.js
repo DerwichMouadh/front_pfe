@@ -15,7 +15,8 @@ import {
   ViewGridIcon,
   CogIcon,
   SpeakerphoneIcon,
-  DocumentTextIcon
+  DocumentTextIcon,
+  LightBulbIcon
 } from "@heroicons/react/outline";
 
 import {
@@ -56,7 +57,7 @@ function Sidebar({ token }) {
   const getallInProgress = () => {
     const config = {
       method: "GET",
-      url: `http://localhost:5000/filerequests/inprogress`,
+      url: `http://localhost:5000/filerequests/all`,
       // headers: {
       //   Authorization: `Bearer ${token}`,
       // },
@@ -110,13 +111,13 @@ function Sidebar({ token }) {
           </a>
         </div>
         <div className={`${open ? "block" : "hidden"} flex flex-col`}>
-          <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
+          {/* <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
             <Link href="/Users/AddUser" className="">
               <a className="w-full">
                 <SidebarRow Icon={UserAddIcon} title="Add User" color />
               </a>
             </Link>
-          </div>
+          </div> */}
           <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
             <Link href="/Users/UserList">
               <a className="w-full">
@@ -149,40 +150,20 @@ function Sidebar({ token }) {
             </a>
           </Link>
         </div>
-        <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/Teams/TeamsList">
-            <a className="w-full">
-              <SidebarRow Icon={UserGroupIcon} title="Teams" />
-            </a>
-          </Link>
-        </div>
-        <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
-          <Link href="/Announcements">
-            <a className="w-full">
-              <SidebarRow Icon={SpeakerphoneIcon} title="Announcements" />
-            </a>
-          </Link>
-        </div>
+
         {openMore && (
           <div>
-            <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-              <Link href="/Overview">
+            <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
+              <Link href="/Teams/TeamsList">
                 <a className="w-full">
-                  <SidebarRow Icon={ViewGridIcon} title="Overview 1" />
+                  <SidebarRow Icon={UserGroupIcon} title="Teams" />
                 </a>
               </Link>
             </div>
-            <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300 ">
-              <Link href="/Overview">
+            <div className="flex hover:rounded-2xl mb-1 relative group hover:bg-myColors-300">
+              <Link href="/Announcements">
                 <a className="w-full">
-                  <SidebarRow Icon={ViewGridIcon} title="Overview 2" />
-                </a>
-              </Link>
-            </div>
-            <div className="flex hover:rounded-2xl relative group hover:bg-myColors-300 ">
-              <Link href="/Overview">
-                <a className="w-full">
-                  <SidebarRow Icon={ViewGridIcon} title="Overview 3" />
+                  <SidebarRow Icon={SpeakerphoneIcon} title="Announcements" />
                 </a>
               </Link>
             </div>
@@ -200,7 +181,18 @@ function Sidebar({ token }) {
           </a>
         </div>
       </div>
-      <div className="bg-myColors-300 rounded-2xl flex-col space-y-4 py-10 p-3 text-white">
+      <div className="bg-myColors-300 rounded-2xl flex-col space-y-4 py-6 p-3 text-white">
+        <div>
+          <LightBulbIcon className="h-8 w-8 mx-auto" />
+          <h1 className=" text-myColors-600 text-center py-4">
+            “However difficult life may seem, there is always something you can
+            do and succeed at.”
+          </h1>
+          <h1 className=" text-right">Stephen Hawking</h1>
+        </div>
+        {/* <div className="text-center text-3xl">{time}</div> */}
+      </div>
+      <div className="bg-myColors-300 rounded-2xl flex-col space-y-4 py-4 p-3 text-white">
         <div className="text-center">{date}</div>
         {/* <div className="text-center text-3xl">{time}</div> */}
       </div>

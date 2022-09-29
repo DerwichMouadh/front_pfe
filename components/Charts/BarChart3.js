@@ -11,15 +11,14 @@ import { Bar } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-function BarChart({ numInProgressF, numReady, numRefused }) {
-  
+function BarChart3({ numOpen, numInProgress, numClose }) {
   var data = {
     // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    labels: ["Ready", "In Progress", "Refused"],
+    labels: ["To Do", "In Progress", "Done"],
     datasets: [
       {
-        label: " # of Files",
-        data: [numReady, numInProgressF, numRefused],
+        label: " # of Tasks",
+        data: [numOpen, numInProgress, numClose],
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
           "rgba(54, 162, 235, 0.8)",
@@ -38,35 +37,34 @@ function BarChart({ numInProgressF, numReady, numRefused }) {
         ],
         borderWidth: 3,
         barPercentage: 1.0,
-
       },
     ],
   };
 
   var options = {
-    indexAxis: 'x',
+    indexAxis: "x",
     maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
         grid: {
-          color: 'rgba(255, 255, 255, 0.1)',
+          color: "rgba(255, 255, 255, 0.1)",
           display: true,
         },
       },
       x: {
         grid: {
-          color: 'rgba(255, 255, 255, 0.1)'
-        }
+          color: "rgba(255, 255, 255, 0.1)",
+        },
       },
     },
     plugins: {
       legend: {
         labels: {
-          color: 'rgba(255, 255, 255, 1)',
-        }
-      }
-    }
+          color: "rgba(255, 255, 255, 1)",
+        },
+      },
+    },
   };
 
   return (
@@ -76,4 +74,4 @@ function BarChart({ numInProgressF, numReady, numRefused }) {
   );
 }
 
-export default BarChart;
+export default BarChart3;
